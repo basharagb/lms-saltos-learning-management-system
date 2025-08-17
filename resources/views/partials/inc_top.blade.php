@@ -22,6 +22,12 @@
 {{-- University Theme CSS--}}
 <link href=" {{ asset('assets/css/university-theme.css') }}" rel="stylesheet" type="text/css">
 
+{{-- Persistent Sidebar CSS--}}
+<link href=" {{ asset('assets/css/persistent-sidebar.css') }}" rel="stylesheet" type="text/css">
+
+{{-- Responsive Content CSS--}}
+<link href=" {{ asset('assets/css/responsive-content.css') }}" rel="stylesheet" type="text/css">
+
 {{--   Core JS files --}}
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }} "></script>
     <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }} "></script>

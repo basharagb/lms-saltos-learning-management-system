@@ -17,17 +17,18 @@
     <div class="sidebar-content">
 
         <!-- User menu -->
+        @if(Auth::check())
         <div class="sidebar-user">
             <div class="card-body">
                 <div class="media">
                     <div class="mr-3">
-                        <a href="{{ route('my_account') }}"><img src="{{ Auth::user()->photo }}" width="38" height="38" class="rounded-circle" alt="photo"></a>
+                        <a href="{{ route('my_account') }}"><img src="{{ Auth::user()->photo ?? asset('global_assets/images/placeholders/user.png') }}" width="38" height="38" class="rounded-circle" alt="photo"></a>
                     </div>
 
                     <div class="media-body">
-                        <div class="media-title font-weight-semibold">{{ Auth::user()->name }}</div>
-                        <div class="font-size-xs opacity-50">
-                            <i class="icon-user font-size-sm"></i> &nbsp;{{ ucwords(str_replace('_', ' ', Auth::user()->user_type)) }}
+                        <div class="media-title font-weight-semibold">{{ Auth::user()->name ?? 'User' }}</div>
+                        <div class="media-subtitle opacity-75">
+                            <i class="icon-user font-size-sm"></i> &nbsp;{{ ucwords(str_replace('_', ' ', Auth::user()->user_type ?? 'guest')) }}
                         </div>
                     </div>
 
@@ -37,6 +38,28 @@
                 </div>
             </div>
         </div>
+        @else
+        <div class="sidebar-user">
+            <div class="card-body">
+                <div class="media">
+                    <div class="mr-3">
+                        <a href="{{ route('login') }}"><img src="{{ asset('global_assets/images/placeholders/user.png') }}" width="38" height="38" class="rounded-circle" alt="photo"></a>
+                    </div>
+
+                    <div class="media-body">
+                        <div class="media-title font-weight-semibold">زائر</div>
+                        <div class="media-subtitle opacity-75">
+                            <i class="icon-user font-size-sm"></i> &nbsp;Guest
+                        </div>
+                    </div>
+
+                    <div class="ml-3 align-self-center">
+                        <a href="{{ route('login') }}" class="text-white"><i class="icon-login"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
         <!-- /user menu -->
 
         <!-- Main navigation -->
@@ -88,10 +111,8 @@
                                 <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['payments.index', 'payments.edit', 'payments.create', 'payments.manage', 'payments.show', 'payments.invoice']) ? 'active' : '' }}">الرسوم الجامعية</a>
 
                                 <ul class="nav nav-group-sub">
-                                    <li class="nav-item"><a href="{{ route('payments.create') }}" class="nav-link {{ Route::is('payments.create') ? 'active' : '' }}">Create Payment</a></li>
-                                    <li class="nav-item"><a href="{{ route('payments.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['payments.index', 'payments.edit', 'payments.show']) ? 'active' : '' }}">Manage Payments</a></li>
-                                    <li class="nav-item"><a href="{{ route('payments.manage') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['payments.manage', 'payments.invoice', 'payments.receipts']) ? 'active' : '' }}">Student Payments</a></li>
-
+                                    <li class="{{ in_array(Route::currentRouteName(), ['payments.create']) ? 'active' : '' }}"><a href="{{ route('payments.create') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['payments.create']) ? 'active' : '' }}">إنشاء دفعة</a></li>
+                                    <li class="{{ in_array(Route::currentRouteName(), ['payments.manage', 'payments.invoice', 'payments.receipts', 'payments.show']) ? 'active' : '' }}"><a href="{{ route('payments.manage') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['payments.manage', 'payments.invoice', 'payments.receipts', 'payments.show']) ? 'active' : '' }}">إدارة الدفعات</a></li>
                                 </ul>
 
                             </li>
@@ -250,7 +271,9 @@
 
                 {{--End Exam--}}
 
-                @include('pages.'.Qs::getUserType().'.menu')
+                @if(Qs::getUserType() && Qs::getUserType() !== 'super_admin')
+                    @include('pages.'.Qs::getUserType().'.menu')
+                @endif
 
                 {{--Personal Profile--}}
                 <li class="nav-item">

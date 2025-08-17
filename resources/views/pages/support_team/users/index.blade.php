@@ -48,59 +48,29 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>العنوان: <span class="text-danger">*</span></label>
-                                        <input value="{{ old('address') }}" class="form-control" placeholder="العنوان" name="address" type="text" required>
+                                        <label>اسم المستخدم: <span class="text-danger">*</span></label>
+                                        <input value="{{ old('username') }}" required type="text" name="username" placeholder="اسم المستخدم" class="form-control">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>البريد الإلكتروني: </label>
-                                        <input value="{{ old('email') }}" type="email" name="email" class="form-control" placeholder="your@email.com">
+                                        <label>كلمة المرور: <span class="text-danger">*</span></label>
+                                        <input value="{{ old('password') }}" required type="password" name="password" placeholder="كلمة المرور" class="form-control">
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>اسم المستخدم: </label>
-                                        <input value="{{ old('username') }}" type="text" name="username" class="form-control" placeholder="اسم المستخدم">
+                                        <label>تأكيد كلمة المرور: <span class="text-danger">*</span></label>
+                                        <input value="{{ old('password_confirmation') }}" required type="password" name="password_confirmation" placeholder="تأكيد كلمة المرور" class="form-control">
                                     </div>
                                 </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>رقم الهاتف:</label>
-                                        <input value="{{ old('phone') }}" type="text" name="phone" class="form-control" placeholder="+9661234567" >
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>الهاتف الثابت:</label>
-                                        <input value="{{ old('phone2') }}" type="text" name="phone2" class="form-control" placeholder="+9661234567" >
-                                    </div>
-                                </div>
-
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>تاريخ التوظيف:</label>
-                                        <input autocomplete="off" name="emp_date" value="{{ old('emp_date') }}" type="text" class="form-control date-pick" placeholder="اختر التاريخ...">
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label for="password">كلمة المرور: </label>
-                                        <input id="password" type="password" name="password" class="form-control"  >
-                                    </div>
-                                </div>
-
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label for="gender">الجنس: <span class="text-danger">*</span></label>

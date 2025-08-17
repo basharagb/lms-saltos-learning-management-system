@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>TimeTable - {{ $ttr->name.' - '.$ttr->year }}</title>
+    <title>الجدول الزمني - {{ $ttr->name.' - '.$ttr->year }}</title>
     <style>
         @media print {
 
@@ -34,7 +34,7 @@
 <body>
 <div class="container">
     <div id="print" xmlns:margin-top="http://www.w3.org/1999/xhtml">
-        {{--    Logo N School Details--}}
+        {{--    الشعار وتفاصيل المدرسة--}}
         <table width="100%">
             <tr>
                 <td >
@@ -43,23 +43,23 @@
                     <strong><span style="color: #000; font-size: 15px;"><i>{{ ucwords($s['address']) }}</i></span></strong><br/>
                     <strong><span style="color: #000; text-decoration: underline; font-size: 15px;"><i>{{ config('app.url') }}/i></span></strong>
                     <br /> <br />
-                    <strong><span style="color: #000; font-size: 15px;"> TIMETABLE FOR {{ strtoupper($my_class->name. ' ('.$ttr->year.')' ) }}
+                    <strong><span style="color: #000; font-size: 15px;"> الجدول الزمني لـ {{ strtoupper($my_class->name. ' ('.$ttr->year.')' ) }}
                     </span></strong>
                 </td>
             </tr>
         </table>
 
-        {{--Background Logo--}}
+        {{--الشعار في الخلفية--}}
         <div style="position: relative;  text-align: center; ">
             <img src="{{ $s['logo'] }}"
                  style="max-width: 500px; max-height:600px; margin-top: 60px; position:absolute ; opacity: 0.2; margin-left: auto;margin-right: auto; left: 0; right: 0;" />
         </div>
 
-        {{-- Tabulation Begins --}}
+        {{-- يبدأ الجدول --}}
         <table cellpadding="20" style="width:100%; border-collapse:collapse; border: 1px solid #000; margin: 10px auto;" border="1">
             <thead>
             <tr>
-                <th rowspan="2">Time <i class="icon-arrow-right7 ml-2"></i> <br> Date<i class="icon-arrow-down7 ml-2"></i>
+                <th rowspan="2">الوقت <i class="icon-arrow-right7 ml-2"></i> <br> التاريخ<i class="icon-arrow-down7 ml-2"></i>
                 </th>
                 @foreach($time_slots as $tms)
                     <th rowspan="2">{{ $tms->time_from }} <br>

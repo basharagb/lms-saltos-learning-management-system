@@ -11,11 +11,18 @@ Route::get('/test-arabic', function () {
     return view('test_arabic');
 });
 
+// Test route for super admin
+Route::get('/test-super-admin', function () {
+    return 'Super Admin Test Route Working!';
+});
+
+
+
 
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', 'HomeController@dashboard')->name('home');
-    Route::get('/home', 'HomeController@dashboard')->name('home');
+    Route::get('/home', 'HomeController@dashboard')->name('home_alt');
     Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
     Route::group(['prefix' => 'my_account'], function() {
@@ -52,6 +59,8 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('/create', 'ModernStudentController@create')->name('modern_students.create')->middleware('teamSA');
             Route::get('/search', 'ModernStudentController@search')->name('modern_students.search');
             Route::get('/show/{id}', 'ModernStudentController@show')->name('modern_students.show');
+            Route::get('/edit/{id}', 'ModernStudentController@edit')->name('modern_students.edit')->middleware('teamSA');
+            Route::put('/update/{id}', 'ModernStudentController@update')->name('modern_students.update')->middleware('teamSA');
             Route::post('/bulk-delete', 'ModernStudentController@bulkDelete')->name('modern_students.bulk_delete')->middleware('super_admin');
             Route::get('/sections/{class_id}', 'ModernStudentController@getClassSections')->name('modern_students.sections');
             Route::get('/data', 'ModernStudentController@getStudentsData')->name('modern_students.data');
@@ -199,6 +208,7 @@ Route::group(['middleware' => 'auth'], function () {
 /************************ SUPER ADMIN ****************************/
 Route::group(['namespace' => 'SuperAdmin','middleware' => 'super_admin', 'prefix' => 'super_admin'], function(){
 
+    Route::get('/', 'SettingController@menu')->name('super_admin.menu');
     Route::get('/settings', 'SettingController@index')->name('settings');
     Route::put('/settings', 'SettingController@update')->name('settings.update');
 

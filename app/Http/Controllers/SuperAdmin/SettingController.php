@@ -18,6 +18,12 @@ class SettingController extends Controller
         $this->my_class = $my_class;
     }
 
+    public function menu()
+    {
+        \Log::info('SuperAdmin SettingController menu method called');
+        return view('pages.super_admin.menu');
+    }
+
     public function index()
     {
          $s = $this->setting->all();

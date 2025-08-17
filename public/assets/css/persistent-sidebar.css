@@ -1,0 +1,75 @@
+/* Gentle Persistent Sidebar CSS - Keep existing layout intact */
+
+/* Only override the essential sidebar collapse behavior */
+body.sidebar-xs .sidebar-main,
+body.sidebar-xs .sidebar-main .sidebar-content,
+.sidebar-xs .sidebar-main,
+.sidebar-xs .sidebar-main .sidebar-content {
+    width: 260px !important;
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Prevent mobile sidebar from hiding */
+body.sidebar-mobile-main .sidebar-main,
+body.sidebar-mobile-main .sidebar-main .sidebar-content,
+.sidebar-mobile-main .sidebar-main,
+.sidebar-mobile-main .sidebar-main .sidebar-content {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Prevent sidebar from being completely hidden */
+body.sidebar-main-hidden .sidebar-main,
+.sidebar-main-hidden .sidebar-main {
+    transform: translateX(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Responsive adjustments - only when sidebar would normally collapse */
+@media (max-width: 991.98px) {
+    body.sidebar-xs .sidebar-main,
+    body.sidebar-xs .sidebar-main .sidebar-content {
+        width: 240px !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    body.sidebar-xs .sidebar-main,
+    body.sidebar-xs .sidebar-main .sidebar-content {
+        width: 220px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body.sidebar-xs .sidebar-main,
+    body.sidebar-xs .sidebar-main .sidebar-content {
+        width: 200px !important;
+    }
+}
+
+/* Ensure content area adjusts properly when sidebar is forced open */
+body.sidebar-xs .page-content {
+    margin-right: 260px !important;
+}
+
+@media (max-width: 991.98px) {
+    body.sidebar-xs .page-content {
+        margin-right: 240px !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    body.sidebar-xs .page-content {
+        margin-right: 220px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body.sidebar-xs .page-content {
+        margin-right: 200px !important;
+    }
+}

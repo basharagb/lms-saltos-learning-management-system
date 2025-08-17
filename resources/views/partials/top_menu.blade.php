@@ -44,10 +44,11 @@
 
         <ul class="navbar-nav">
 
+            @if(Auth::check())
             <li class="nav-item dropdown dropdown-user">
                 <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img style="width: 38px; height:38px;" src="{{ Auth::user()->photo }}" class="rounded-circle" alt="photo">
-                    <span>{{ Auth::user()->name }}</span>
+                    <img style="width: 38px; height:38px;" src="{{ Auth::user()->photo ?? asset('global_assets/images/placeholders/user.png') }}" class="rounded-circle" alt="photo">
+                    <span>{{ Auth::user()->name ?? 'User' }}</span>
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -61,6 +62,14 @@
                     </form>
                 </div>
             </li>
+            @else
+            <li class="nav-item">
+                <a href="{{ route('login') }}" class="navbar-nav-link">
+                    <i class="icon-user"></i>
+                    <span>تسجيل الدخول</span>
+                </a>
+            </li>
+            @endif
         </ul>
     </div>
 </div>

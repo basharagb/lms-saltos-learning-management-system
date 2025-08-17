@@ -20,6 +20,8 @@
 <script src="{{ asset('global_assets/js/plugins/tables/datatables/extensions/pdfmake/vfs_fonts.min.js') }}"></script>
 <script src="{{ asset('global_assets/js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
 
+
+
 {{--Date Pickers--}}
 <script src="{{ asset('global_assets/js/plugins/ui/moment/moment.min.js') }}"></script>
 <script src="{{ asset('global_assets/js/plugins/pickers/bootstrap-datepicker.min.js') }}"></script>
@@ -40,6 +42,12 @@
 <script src="{{ asset('global_assets/js/demo_pages/fullcalendar_basic.js') }}"></script>
 
 <!-- /theme JS files -->
+
+{{--Arabic DataTables Localization--}}
+<script src="{{ asset('assets/js/arabic-datatables.js') }}"></script>
+
+{{--Persistent Sidebar--}}
+<script src="{{ asset('assets/js/persistent-sidebar.js') }}"></script>
 
 <script src=" {{ asset('assets/js/custom.js') }} "></script>
 

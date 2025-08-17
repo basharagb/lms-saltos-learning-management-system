@@ -7,9 +7,11 @@
     </div>
 
     <div class="navbar-collapse collapse" id="navbar-footer">
-					<span class="navbar-text">
-						&copy; {{ date('Y') }}. <a href="#">{{ Qs::getSystemName() }}</a> by <a href="#" >CJ Inspired</a> | Design by <a href="#" >Bashar Zabadani</a>
-					</span>
+        <div class="text-center">
+            <p class="mb-0">
+                &copy; {{ date('Y') }}. <a href="#">{{ Qs::getSystemName() }}</a> بواسطة <a href="#" >CJ Inspired</a> | التصميم بواسطة <a href="#" >بشار الزبداني</a>
+            </p>
+        </div>
 
         <ul class="navbar-nav ml-lg-auto">
             <li class="nav-item"><a href="{{ route('privacy_policy') }}" class="navbar-nav-link" target="_blank"><i class="icon-lifebuoy mr-2"></i> Privacy Policy</a></li>

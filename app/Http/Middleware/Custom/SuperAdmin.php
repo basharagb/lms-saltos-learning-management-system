@@ -17,6 +17,17 @@ class SuperAdmin
      */
     public function handle($request, Closure $next)
     {
-        return (Auth::check() && Qs::userIsSuperAdmin()) ? $next($request) : redirect()->route('login');
+        if (!Auth::check()) {
+            \Log::info('SuperAdmin middleware: User not authenticated');
+            return redirect()->route('login');
+        }
+        
+        if (!Qs::userIsSuperAdmin()) {
+            \Log::info('SuperAdmin middleware: User is not super admin. User type: ' . Auth::user()->user_type);
+            return redirect()->route('login');
+        }
+        
+        \Log::info('SuperAdmin middleware: User authenticated and is super admin');
+        return $next($request);
     }
 }

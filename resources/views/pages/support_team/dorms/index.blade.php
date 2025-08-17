@@ -1,17 +1,17 @@
 @extends('layouts.master')
-@section('page_title', 'Manage Dorms')
+@section('page_title', 'إدارة السكن الجامعي')
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Manage Dorms</h6>
+            <h6 class="card-title">إدارة السكن الجامعي</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
-                <li class="nav-item"><a href="#all-dorms" class="nav-link active" data-toggle="tab">Manage Dorms</a></li>
-                <li class="nav-item"><a href="#new-dorm" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Create New Dorm</a></li>
+                <li class="nav-item"><a href="#all-dorms" class="nav-link active" data-toggle="tab">إدارة السكن الجامعي</a></li>
+                <li class="nav-item"><a href="#new-dorm" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> إنشاء سكن جامعي جديد</a></li>
             </ul>
 
             <div class="tab-content">
@@ -19,10 +19,10 @@
                         <table class="table datatable-button-html5-columns">
                             <thead>
                             <tr>
-                                <th>S/N</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Action</th>
+                                <th>م</th>
+                                <th>الاسم</th>
+                                <th>الوصف</th>
+                                <th>الإجراء</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -40,12 +40,12 @@
 
                                                 <div class="dropdown-menu dropdown-menu-left">
                                                     @if(Qs::userIsTeamSA())
-                                                    {{--Edit--}}
-                                                    <a href="{{ route('dorms.edit', $d->id) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                                    {{--تعديل--}}
+                                                    <a href="{{ route('dorms.edit', $d->id) }}" class="dropdown-item"><i class="icon-pencil"></i> تعديل</a>
                                                    @endif
                                                         @if(Qs::userIsSuperAdmin())
-                                                    {{--Delete--}}
-                                                    <a id="{{ $d->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                    {{--حذف--}}
+                                                    <a id="{{ $d->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> حذف</a>
                                                     <form method="post" id="item-delete-{{ $d->id }}" action="{{ route('dorms.destroy', $d->id) }}" class="hidden">@csrf @method('delete')</form>
                                                         @endif
 
@@ -66,21 +66,21 @@
                             <form class="ajax-store" method="post" action="{{ route('dorms.store') }}">
                                 @csrf
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">الاسم <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="Name of Dormitory">
+                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="اسم السكن الجامعي">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label font-weight-semibold">Description</label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">الوصف</label>
                                     <div class="col-lg-9">
-                                        <input name="description" value="{{ old('description') }}"  type="text" class="form-control" placeholder="Description of Dormitory">
+                                        <input name="description" value="{{ old('description') }}"  type="text" class="form-control" placeholder="وصف السكن الجامعي">
                                     </div>
                                 </div>
 
                                 <div class="text-right">
-                                    <button id="ajax-btn" type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
+                                    <button id="ajax-btn" type="submit" class="btn btn-primary">إرسال النموذج <i class="icon-paperplane ml-2"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -90,6 +90,6 @@
         </div>
     </div>
 
-    {{--Dorm List Ends--}}
+    {{--انتهت قائمة السكن الجامعي--}}
 
 @endsection

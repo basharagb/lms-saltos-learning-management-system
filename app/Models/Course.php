@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Course extends Model
 {
+    use HasFactory;
+    
     protected $fillable = [
         'name', 'code', 'description', 'credit_hours', 'my_class_id', 
         'teacher_id', 'semester', 'academic_year', 'status'

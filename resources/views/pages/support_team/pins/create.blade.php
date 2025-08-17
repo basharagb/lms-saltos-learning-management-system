@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Generate Pins')
+@section('page_title', 'إنشاء رموز')
 @section('content')
     <div class="card">
         <div class="card-header header-elements-inline">

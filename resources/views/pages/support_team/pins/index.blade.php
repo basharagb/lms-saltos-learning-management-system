@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Exam Pins')
+@section('page_title', 'رموز الامتحانات')
 @section('content')
 
     <div class="card">

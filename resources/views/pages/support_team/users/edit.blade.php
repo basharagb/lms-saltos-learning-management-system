@@ -66,8 +66,8 @@
                         @if(in_array($user->user_type, Qs::getStaff()))
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Date of Employment:</label>
-                                    <input autocomplete="off" name="emp_date" value="{{ $user->staff->first()->emp_date ?? '' }}" type="text" class="form-control date-pick" placeholder="Select Date...">
+                                    <label>تاريخ التعيين:</label>
+                                    <input autocomplete="off" name="emp_date" value="{{ $user->staff->first()->emp_date ?? '' }}" type="text" class="form-control date-pick" placeholder="اختر التاريخ...">
 
                                 </div>
                             </div>
@@ -75,19 +75,19 @@
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="gender">Gender: <span class="text-danger">*</span></label>
-                                <select class="select form-control" id="gender" name="gender" required data-fouc data-placeholder="Choose..">
+                                <label for="gender">النوع: <span class="text-danger">*</span></label>
+                                <select class="select form-control" id="gender" name="gender" required data-fouc data-placeholder="اختر...">
                                     <option value=""></option>
-                                    <option {{ ($user->gender == 'Male') ? 'selected' : '' }} value="Male">Male</option>
-                                    <option {{ ($user->gender == 'Female') ? 'selected' : '' }} value="Female">Female</option>
+                                    <option {{ ($user->gender == 'Male') ? 'selected' : '' }} value="Male">ذكر</option>
+                                    <option {{ ($user->gender == 'Female') ? 'selected' : '' }} value="Female">أنثى</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="nal_id">Nationality: <span class="text-danger">*</span></label>
-                                <select data-placeholder="Choose..." required name="nal_id" id="nal_id" class="select-search form-control">
+                                <label for="nal_id">الجنسية: <span class="text-danger">*</span></label>
+                                <select data-placeholder="اختر..." required name="nal_id" id="nal_id" class="select-search form-control">
                                     <option value=""></option>
                                     @foreach($nationals as $nal)
                                         <option {{ ($user->nal_id == $nal->id) ? 'selected' : '' }} value="{{ $nal->id }}">{{ $nal->name }}</option>

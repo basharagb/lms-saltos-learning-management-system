@@ -4,23 +4,23 @@
             @csrf <input name="ttr_id" value="{{ $ttr->id }}" type="hidden">
 
             @if($ttr->exam_id)
-                {{--EXAM DATE--}}
+                {{--تاريخ الامتحان--}}
                 <div class="form-group row">
-                    <label class="col-lg-3 col-form-label font-weight-semibold">Exam Date <span
+                    <label class="col-lg-3 col-form-label font-weight-semibold">تاريخ الامتحان <span
                                 class="text-danger">*</span></label>
                     <div class="col-lg-9">
-                        <input autocomplete="off" name="exam_date" value="{{ old('exam_date') }}" required type="text" class="form-control date-pick" placeholder="Select Date...">
+                        <input autocomplete="off" name="exam_date" value="{{ old('exam_date') }}" required type="text" class="form-control date-pick" placeholder="اختر التاريخ...">
                     </div>
                 </div>
 
             @else
-                {{--DAY--}}
+                {{--اليوم--}}
                 <div class="form-group row">
-                    <label for="day" class="col-lg-3 col-form-label font-weight-semibold">Day <span class="text-danger">*</span></label>
+                    <label for="day" class="col-lg-3 col-form-label font-weight-semibold">اليوم <span class="text-danger">*</span></label>
 
                     <div class="col-lg-9">
                         <select id="day" name="day" required type="text" class="form-control select"
-                                data-placeholder="Select Day...">
+                                data-placeholder="اختر اليوم...">
                             <option value=""></option>
                             @foreach(Qs::getDaysOfTheWeek() as $dw)
                                 <option {{ old('day') == $dw ? 'selected' : '' }} value="{{ $dw }}">{{ $dw }}</option>
@@ -32,12 +32,12 @@
 
             @endif
 
-            {{--SUBJECT--}}
+            {{--المادة--}}
             <div class="form-group row">
-                <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Subject
+                <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">المادة
                     <span class="text-danger">*</span></label>
                 <div class="col-lg-9">
-                    <select required data-placeholder="Select Subject"
+                    <select required data-placeholder="اختر المادة"
                             class="form-control select-search" name="subject_id" id="subject_id">
                         <option value=""></option>
                         @foreach($subjects as $sub)
@@ -47,14 +47,14 @@
                 </div>
             </div>
 
-            {{--TIME SLOT--}}
+            {{--الفترة الزمنية--}}
             <div class="form-group row">
 
-                <label for="ts_id" class="col-lg-3 col-form-label font-weight-semibold">Time Slot <span
+                <label for="ts_id" class="col-lg-3 col-form-label font-weight-semibold">الفترة الزمنية <span
                             class="text-danger">*</span></label>
 
                 <div class="col-lg-9">
-                    <select data-placeholder="Select Time..." required class="select form-control" name="ts_id"
+                    <select data-placeholder="اختر الوقت..." required class="select form-control" name="ts_id"
                             id="ts_id">
 
                         <option value=""></option>
@@ -67,7 +67,7 @@
 
 
             <div class="text-right">
-                <button type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
+                <button type="submit" class="btn btn-primary">إرسال النموذج <i class="icon-paperplane ml-2"></i></button>
             </div>
         </form>
     </div>

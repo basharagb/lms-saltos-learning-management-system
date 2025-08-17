@@ -14,24 +14,24 @@
 
     <div class="collapse navbar-collapse" id="navbar-mobile">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item dropdown">
-                <a href="{{ route('home') }}" class="navbar-nav-link">
-                    <i class="icon-home"></i>
-                    <span class="d-md-none ml-2">Home</span>
+            <li class="nav-item dropdown dropdown-user h-100">
+                <a href="#" class="navbar-nav-link dropdown-toggle d-flex h-100 align-items-center" data-toggle="dropdown">
+                    <img src="{{ asset('global_assets/images/logo.png') }}" class="rounded mr-2" width="34" alt="">
+                    <span class="d-md-none ml-2">الرئيسية</span>
                 </a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a href="{{ route('login') }}" class="navbar-nav-link">
-                    <i class="icon-user-tie"></i>
-                    <span class="d-md-none ml-2">My Account</span>
+            <li class="nav-item dropdown dropdown-user h-100">
+                <a href="#" class="navbar-nav-link dropdown-toggle d-flex h-100 align-items-center" data-toggle="dropdown">
+                    <img src="{{ asset('global_assets/images/logo.png') }}" class="rounded mr-2" width="34" alt="">
+                    <span class="d-md-none ml-2">حسابي</span>
                 </a>
             </li>
 
-            <li class="nav-item dropdown">
-                <a href="#" class="navbar-nav-link">
-                    <i class="icon-cog3"></i>
-                    <span class="d-md-none ml-2">Options</span>
+            <li class="nav-item dropdown dropdown-user h-100">
+                <a href="#" class="navbar-nav-link dropdown-toggle d-flex h-100 align-items-center" data-toggle="dropdown">
+                    <img src="{{ asset('global_assets/images/logo.png') }}" class="rounded mr-2" width="34" alt="">
+                    <span class="d-md-none ml-2">الخيارات</span>
                 </a>
             </li>
         </ul>

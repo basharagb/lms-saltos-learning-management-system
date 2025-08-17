@@ -31,6 +31,14 @@ class SubjectController extends Controller
         return view('pages.support_team.subjects.index', $d);
     }
 
+    public function create()
+    {
+        $d['my_classes'] = $this->my_class->all();
+        $d['teachers'] = $this->user->getUserByType('teacher');
+        
+        return view('pages.support_team.subjects.create', $d);
+    }
+
     public function store(SubjectCreate $req)
     {
         $data = $req->all();
@@ -54,6 +62,15 @@ class SubjectController extends Controller
         $this->my_class->updateSubject($id, $data);
 
         return Qs::jsonUpdateOk();
+    }
+
+    public function show($id)
+    {
+        $d['s'] = $sub = $this->my_class->findSubject($id);
+        $d['my_classes'] = $this->my_class->all();
+        $d['teachers'] = $this->user->getUserByType('teacher');
+
+        return is_null($sub) ? Qs::goWithDanger('subjects.index') : view('pages.support_team.subjects.show', $d);
     }
 
     public function destroy($id)

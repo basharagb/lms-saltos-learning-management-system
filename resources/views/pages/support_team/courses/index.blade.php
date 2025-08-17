@@ -211,7 +211,7 @@
                 </div>
                 
                 <div class="mb-3">
-                    <p class="text-muted mb-2">{{ Str::limit($course->description, 100) }}</p>
+                    <p class="text-muted mb-2">{{ \Illuminate\Support\Str::limit($course->description, 100) }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="semester-badge">
                             @if($course->semester == 'first') الفصل الأول

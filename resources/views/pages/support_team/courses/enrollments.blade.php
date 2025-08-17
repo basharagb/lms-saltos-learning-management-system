@@ -86,13 +86,13 @@
                                              src="{{ $enrollment->student->user->photo ?? '/assets/images/default-avatar.png' }}" 
                                              alt="صورة الطالب">
                                         <div>
-                                            <h6 class="mb-0">{{ $enrollment->student->user->name }}</h6>
-                                            <small class="text-muted">{{ $enrollment->student->user->email }}</small>
+                                            <h6 class="mb-0">{{ $enrollment->student->user->name ?? 'N/A' }}</h6>
+                                            <small class="text-muted">{{ $enrollment->student->user->email ?? 'N/A' }}</small>
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ $enrollment->student->adm_no }}</td>
-                                <td>{{ $enrollment->enrollment_date->format('Y-m-d') }}</td>
+                                <td>{{ $enrollment->student->adm_no ?? 'N/A' }}</td>
+                                <td>{{ $enrollment->enrollment_date ? $enrollment->enrollment_date->format('Y-m-d') : 'N/A' }}</td>
                                 <td>
                                     <span class="badge badge-{{ $enrollment->status == 'enrolled' ? 'success' : ($enrollment->status == 'completed' ? 'info' : 'warning') }}">
                                         @if($enrollment->status == 'enrolled') مسجل

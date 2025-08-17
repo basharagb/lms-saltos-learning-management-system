@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Enter PIN')
+@section('page_title', 'أدخل الرمز')
 @section('content')
     <div class="card">
         <div class="card-header header-elements-inline">

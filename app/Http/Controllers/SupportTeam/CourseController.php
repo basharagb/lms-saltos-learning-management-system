@@ -140,9 +140,13 @@ class CourseController extends Controller
     {
         $data['course'] = Course::with(['myClass', 'teacher'])->findOrFail($id);
         $data['enrollments'] = CourseEnrollment::where('course_id', $id)
-                                              ->with('student.user')
+                                              ->with(['student.user'])
                                               ->orderBy('enrollment_date', 'desc')
                                               ->get();
+        
+        // Get available students for enrollment (optional for the view)
+        $enrolledStudentIds = $data['enrollments']->pluck('student_id')->toArray();
+        $data['available_students'] = collect(); // Empty collection for now
         
         return view('pages.support_team.courses.enrollments', $data);
     }

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Select Exam Year')
+@section('page_title', 'اختر سنة الامتحان')
 @section('content')
     <div class="card">
         <div class="card-header header-elements-inline">

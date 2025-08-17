@@ -4,10 +4,10 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>Photo</th>
-            <th>Name</th>
-            <th>Current Session</th>
-            <th>Action</th>
+            <th>الصورة</th>
+            <th>الاسم</th>
+            <th>الفصل الدراسي الحالي</th>
+            <th>الإجراء</th>
         </tr>
         </thead>
         <tbody>
@@ -19,9 +19,9 @@
                 <td>{{ $sr->session }}</td>
                 <td>
                     <select class="form-control select" name="p-{{$sr->id}}" id="p-{{$sr->id}}">
-                        <option value="P">Promote</option>
-                        <option value="D">Don't Promote</option>
-                        <option value="G">Graduated</option>
+                        <option value="P">ترقية</option>
+                        <option value="D">عدم الترقية</option>
+                        <option value="G">تخرج</option>
                     </select>
                 </td>
             </tr>
@@ -29,6 +29,6 @@
         </tbody>
     </table>
     <div class="text-center mt-3">
-        <button class="btn btn-success"><i class="icon-stairs-up mr-2"></i> Promote Students</button>
+        <button class="btn btn-success"><i class="icon-stairs-up mr-2"></i> ترقية الطلاب</button>
     </div>
 </form>

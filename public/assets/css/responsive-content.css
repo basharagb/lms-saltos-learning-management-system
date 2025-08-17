@@ -1,0 +1,245 @@
+/* Responsive Content Layout CSS */
+
+/* Ensure proper spacing and layout on all screen sizes */
+.content {
+    padding: 1rem !important;
+}
+
+/* Responsive card layouts */
+@media (max-width: 767.98px) {
+    .row {
+        margin-left: -0.5rem !important;
+        margin-right: -0.5rem !important;
+    }
+    
+    .col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, 
+    .col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+    .col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+    .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+    .col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+    .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+    .col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6,
+    .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    .card {
+        margin-bottom: 1rem !important;
+    }
+    
+    .card-body {
+        padding: 1rem !important;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.875rem !important;
+        width: 100% !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .btn + .btn {
+        margin-left: 0 !important;
+    }
+    
+    /* Stack buttons vertically on mobile */
+    .btn-group {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .btn-group .btn {
+        border-radius: 0.25rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .btn-group .btn:first-child {
+        border-top-left-radius: 0.25rem !important;
+        border-top-right-radius: 0.25rem !important;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+    }
+    
+    .btn-group .btn:last-child {
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-left-radius: 0.25rem !important;
+        border-bottom-right-radius: 0.25rem !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Tablet adjustments */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .content {
+        padding: 1.5rem !important;
+    }
+    
+    .card {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Desktop adjustments */
+@media (min-width: 992px) {
+    .content {
+        padding: 2rem !important;
+    }
+    
+    .card {
+        margin-bottom: 2rem !important;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* Ensure proper table responsiveness */
+@media (max-width: 767.98px) {
+    .table-responsive {
+        border: 0 !important;
+    }
+    
+    .table {
+        font-size: 0.875rem !important;
+    }
+    
+    .table td, .table th {
+        padding: 0.5rem !important;
+    }
+}
+
+/* Ensure proper form responsiveness */
+@media (max-width: 767.98px) {
+    .form-group {
+        margin-bottom: 1rem !important;
+    }
+    
+    .form-control {
+        font-size: 1rem !important; /* Prevent zoom on iOS */
+        padding: 0.75rem !important;
+    }
+    
+    .form-label {
+        margin-bottom: 0.5rem !important;
+        font-weight: 600 !important;
+    }
+}
+
+/* Ensure proper navigation responsiveness */
+@media (max-width: 767.98px) {
+    .nav-tabs {
+        flex-direction: column !important;
+    }
+    
+    .nav-tabs .nav-link {
+        border-radius: 0.25rem !important;
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .nav-tabs .nav-link.active {
+        border-color: #007bff !important;
+    }
+}
+
+/* Ensure proper modal responsiveness */
+@media (max-width: 767.98px) {
+    .modal-dialog {
+        margin: 0.5rem !important;
+        max-width: calc(100% - 1rem) !important;
+    }
+    
+    .modal-body {
+        padding: 1rem !important;
+    }
+    
+    .modal-footer {
+        padding: 1rem !important;
+        flex-direction: column !important;
+    }
+    
+    .modal-footer .btn {
+        width: 100% !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    .modal-footer .btn:last-child {
+        margin-bottom: 0 !important;
+    }
+}
+
+/* Ensure proper dropdown responsiveness */
+@media (max-width: 767.98px) {
+    .dropdown-menu {
+        position: static !important;
+        float: none !important;
+        width: 100% !important;
+        margin-top: 0.5rem !important;
+        border: 1px solid #dee2e6 !important;
+        border-radius: 0.25rem !important;
+    }
+    
+    .dropdown-item {
+        padding: 0.75rem 1rem !important;
+        border-bottom: 1px solid #f8f9fa !important;
+    }
+    
+    .dropdown-item:last-child {
+        border-bottom: 0 !important;
+    }
+}
+
+/* Ensure proper alert responsiveness */
+@media (max-width: 767.98px) {
+    .alert {
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .alert-dismissible .close {
+        padding: 1rem !important;
+        margin: -1rem -1rem -1rem auto !important;
+    }
+}
+
+/* Ensure proper pagination responsiveness */
+@media (max-width: 767.98px) {
+    .pagination {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .page-link {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.875rem !important;
+    }
+}
+
+/* Ensure proper badge responsiveness */
+@media (max-width: 767.98px) {
+    .badge {
+        font-size: 0.75rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+}
+
+/* Ensure proper progress bar responsiveness */
+@media (max-width: 767.98px) {
+    .progress {
+        height: 1.5rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    .progress-bar {
+        line-height: 1.5rem !important;
+        font-size: 0.875rem !important;
+    }
+}

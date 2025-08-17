@@ -9,6 +9,7 @@ use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
 use App\Repositories\UserRepo;
 use App\Repositories\StudentRepo;
+use App\Models\StudentRecord;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,7 @@ class ModernStudentController extends Controller
 
     public function __construct(LocationRepo $loc, MyClassRepo $my_class, UserRepo $user, StudentRepo $student)
     {
+        $this->middleware('auth', ['only' => ['index', 'search', 'show']]);
         $this->middleware('teamSA', ['except' => ['index', 'search', 'show']]);
         $this->middleware('super_admin', ['only' => ['destroy', 'bulkDelete']]);
 
@@ -100,26 +102,35 @@ class ModernStudentController extends Controller
         $query = $this->student->getRecord([]);
         
         if ($class_id) {
-            $query = $query->where('my_class_id', $class_id);
+                $data = StudentRecord::with(['user', 'my_class', 'section'])
+                ->where('my_class_id', $class_id)
+                ->whereHas('user', function($q) use ($term) {
+                    $q->where('name', 'LIKE', "%{$term}%")
+                      ->orWhere('email', 'LIKE', "%{$term}%");
+                })
+                ->orWhere('adm_no', 'LIKE', "%{$term}%")
+                ->limit(10)
+                ->get();
+        } else {
+            $data = StudentRecord::with(['user', 'my_class', 'section'])
+                ->whereHas('user', function($q) use ($term) {
+                    $q->where('name', 'LIKE', "%{$term}%")
+                      ->orWhere('email', 'LIKE', "%{$term}%");
+                })
+                ->orWhere('adm_no', 'LIKE', "%{$term}%")
+                ->limit(10)
+                ->get();
         }
         
-        $students = $query->whereHas('user', function($q) use ($term) {
-            $q->where('name', 'LIKE', "%{$term}%")
-              ->orWhere('email', 'LIKE', "%{$term}%");
-        })->orWhere('adm_no', 'LIKE', "%{$term}%")
-          ->with(['user', 'my_class', 'section'])
-          ->limit(10)
-          ->get();
-        
-        return response()->json($students->map(function($student) {
+        return response()->json($data->map(function($student) {
             return [
                 'id' => $student->id,
-                'name' => $student->user->name,
+                'name' => $student->user ? $student->user->name : 'N/A',
                 'adm_no' => $student->adm_no,
-                'email' => $student->user->email,
-                'class' => $student->my_class->name,
-                'section' => $student->section->name,
-                'photo' => $student->user->photo,
+                'email' => $student->user ? $student->user->email : 'N/A',
+                'class' => $student->my_class ? $student->my_class->name : 'N/A',
+                'section' => $student->section ? $student->section->name : 'N/A',
+                'photo' => $student->user ? $student->user->photo : null,
                 'hash' => Qs::hash($student->id)
             ];
         }));
@@ -290,20 +301,20 @@ class ModernStudentController extends Controller
         $buttons .= '<div class="dropdown-menu dropdown-menu-left">';
 
         // View Profile
-        $buttons .= '<a href="' . route('students.show', Qs::hash($student->id)) . '" class="dropdown-item">';
+        $buttons .= '<a href="' . route('modern_students.show', $student->id) . '" class="dropdown-item">';
         $buttons .= '<i class="icon-eye"></i> عرض الملف الشخصي</a>';
 
         // Edit (only for authorized users)
         if (Qs::userIsTeamSA()) {
-            $buttons .= '<a href="' . route('students.edit', Qs::hash($student->id)) . '" class="dropdown-item">';
+            $buttons .= '<a href="' . route('modern_students.edit', $student->id) . '" class="dropdown-item">';
             $buttons .= '<i class="icon-pencil"></i> تعديل</a>';
 
-            $buttons .= '<a href="' . route('st.reset_pass', Qs::hash($student->user->id)) . '" class="dropdown-item">';
+            $buttons .= '<a href="#" onclick="resetPassword(' . $student->user->id . ')" class="dropdown-item">';
             $buttons .= '<i class="icon-lock"></i> إعادة تعيين كلمة المرور</a>';
         }
 
         // Marksheet
-        $buttons .= '<a target="_blank" href="' . route('marks.year_selector', Qs::hash($student->user->id)) . '" class="dropdown-item">';
+        $buttons .= '<a href="#" onclick="viewMarks(' . $student->user->id . ')" class="dropdown-item">';
         $buttons .= '<i class="icon-check"></i> كشف الدرجات</a>';
 
         $buttons .= '</div>';
@@ -311,5 +322,69 @@ class ModernStudentController extends Controller
         $buttons .= '</div>';
 
         return $buttons;
+    }
+
+    /**
+     * Show the form for editing the specified student.
+     */
+    public function edit($id)
+    {
+        $student = $this->student->getRecord(['id' => $id])->with(['user', 'my_class', 'section'])->first();
+        
+        if (!$student) {
+            return redirect()->route('modern_students.index')->with('error', 'لم يتم العثور على الطالب');
+        }
+
+        $data['student'] = $student;
+        $data['my_classes'] = $this->my_class->all();
+        $data['sections'] = $this->my_class->getClassSections($student->my_class_id);
+        $data['states'] = $this->loc->getStates();
+        $data['lgas'] = $this->loc->getLGAs($student->user->state_id ?? 1);
+        $data['nationalities'] = $this->loc->getAllNationals();
+        $data['blood_groups'] = \App\Models\BloodGroup::all();
+
+        return view('pages.modern_student.edit', $data);
+    }
+
+    /**
+     * Update the specified student in storage.
+     */
+    public function update(Request $request, $id)
+    {
+        $student = $this->student->getRecord(['id' => $id])->first();
+        
+        if (!$student) {
+            return redirect()->route('modern_students.index')->with('error', 'لم يتم العثور على الطالب');
+        }
+
+        // Validate the request
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $student->user_id,
+            'phone' => 'nullable|string|max:20',
+            'my_class_id' => 'required|exists:my_classes,id',
+            'section_id' => 'required|exists:sections,id',
+            'adm_no' => 'nullable|string|max:30|unique:student_records,adm_no,' . $id,
+        ]);
+
+        try {
+            // Update user information
+            $student->user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+            ]);
+
+            // Update student record
+            $student->update([
+                'my_class_id' => $request->my_class_id,
+                'section_id' => $request->section_id,
+                'adm_no' => $request->adm_no,
+            ]);
+
+            return redirect()->route('modern_students.index')->with('success', 'تم تحديث بيانات الطالب بنجاح');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'حدث خطأ أثناء تحديث بيانات الطالب: ' . $e->getMessage());
+        }
     }
 }
