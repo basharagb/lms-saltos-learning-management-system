@@ -34,6 +34,9 @@
 {{-- Courses Responsive CSS--}}
 <link href=" {{ asset('assets/css/courses-responsive.css') }}" rel="stylesheet" type="text/css">
 
+{{-- Dashboard Responsive CSS--}}
+<link href=" {{ asset('assets/css/dashboard-responsive.css') }}" rel="stylesheet" type="text/css">
+
 {{--   Core JS files --}}
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }} "></script>
     <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }} "></script>

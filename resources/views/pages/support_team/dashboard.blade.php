@@ -1,16 +1,21 @@
 @extends('layouts.master')
 @section('page_title', 'لوحة التحكم الرئيسية')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/dashboard-responsive.css') }}">
+@endsection
+
 @section('content')
 
     <!-- University Welcome Header -->
     <div class="page-header mb-4">
         <div class="row align-items-center">
-            <div class="col">
+            <div class="col-12 col-md">
                 <h2 class="page-title mb-2">مرحباً بك، {{ Auth::user()->name }}</h2>
                 <p class="text-muted mb-0">نظام إدارة الطلاب الجامعي - لوحة التحكم الرئيسية</p>
             </div>
-            <div class="col-auto">
-                <div class="btn-group">
+            <div class="col-12 col-md-auto">
+                <div class="btn-group w-100 w-md-auto">
                     <button type="button" class="btn btn-primary">
                         <i class="icon-calendar3 mr-2"></i>
                         {{ date('Y/m/d') }}
@@ -22,8 +27,8 @@
 
     @if(Qs::userIsTeamSA())
        <!-- University Statistics Cards -->
-       <div class="row mb-4">
-           <div class="col-sm-6 col-xl-3">
+       <div class="row mb-4 dashboard-stats">
+           <div class="col-12 col-sm-6 col-xl-3">
                <div class="stats-card">
                    <div class="media">
                        <div class="media-body">
@@ -40,7 +45,7 @@
                </div>
            </div>
 
-           <div class="col-sm-6 col-xl-3">
+           <div class="col-12 col-sm-6 col-xl-3">
                <div class="stats-card">
                    <div class="media">
                        <div class="media-body">
@@ -57,7 +62,7 @@
                </div>
            </div>
 
-           <div class="col-sm-6 col-xl-3">
+           <div class="col-12 col-sm-6 col-xl-3">
                <div class="stats-card">
                    <div class="media">
                        <div class="media-body">
@@ -74,7 +79,7 @@
                </div>
            </div>
 
-           <div class="col-sm-6 col-xl-3">
+           <div class="col-12 col-sm-6 col-xl-3">
                <div class="stats-card">
                    <div class="media">
                        <div class="media-body">
@@ -93,8 +98,8 @@
        </div>
 
        <!-- University Quick Actions -->
-       <div class="row mb-4">
-           <div class="col-md-3">
+       <div class="row mb-4 dashboard-actions">
+           <div class="col-12 col-sm-6 col-md-3">
                <div class="card" style="border-right: 4px solid var(--university-primary);">
                    <div class="card-body text-center">
                        <i class="icon-users4" style="font-size: 2.5rem; color: var(--university-primary); margin-bottom: 1rem;"></i>
@@ -103,7 +108,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-md-3">
+           <div class="col-12 col-sm-6 col-md-3">
                <div class="card" style="border-right: 4px solid var(--university-success);">
                    <div class="card-body text-center">
                        <i class="icon-users2" style="font-size: 2.5rem; color: var(--university-success); margin-bottom: 1rem;"></i>
@@ -112,7 +117,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-md-3">
+           <div class="col-12 col-sm-6 col-md-3">
                <div class="card" style="border-right: 4px solid var(--university-warning);">
                    <div class="card-body text-center">
                        <i class="icon-windows2" style="font-size: 2.5rem; color: var(--university-warning); margin-bottom: 1rem;"></i>
@@ -121,7 +126,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-md-3">
+           <div class="col-12 col-sm-6 col-md-3">
                <div class="card" style="border-right: 4px solid #8b5cf6;">
                    <div class="card-body text-center">
                        <i class="icon-books" style="font-size: 2.5rem; color: #8b5cf6; margin-bottom: 1rem;"></i>
@@ -134,7 +139,7 @@
        @endif
 
     {{--University Events Calendar--}}
-    <div class="card">
+    <div class="card dashboard-calendar">
         <div class="card-header">
             <h5 class="card-title mb-0">
                 <i class="icon-calendar3 mr-2" style="color: var(--university-primary);"></i>
@@ -148,8 +153,8 @@
     </div>
 
     <!-- University Recent Activities -->
-    <div class="row mt-4">
-        <div class="col-md-8">
+    <div class="row mt-4 dashboard-activities">
+        <div class="col-12 col-md-8">
             <div class="card">
                 <div class="card-header">
                     <h6 class="card-title mb-0">
@@ -179,7 +184,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-12 col-md-4">
             <div class="card">
                 <div class="card-header">
                     <h6 class="card-title mb-0">
