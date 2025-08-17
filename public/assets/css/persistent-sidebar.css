@@ -1,17 +1,185 @@
-/* Gentle Persistent Sidebar CSS - Keep existing layout intact */
+/* Enhanced Persistent Sidebar CSS - Fixed spacing and layout */
 
-/* Only override the essential sidebar collapse behavior */
+/* Base sidebar configuration */
+.sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    height: 100vh !important;
+    z-index: 1000 !important;
+    overflow-y: auto !important;
+    background: #1e3a8a !important;
+    border-left: none !important;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Sidebar main container */
+.sidebar-main {
+    width: 260px !important;
+    max-width: 260px !important;
+    min-width: 260px !important;
+    height: 100% !important;
+}
+
+.sidebar-main .sidebar-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+}
+
+/* Content area positioning */
+.page-content {
+    margin-right: 260px !important;
+    transition: margin-right 0.3s ease !important;
+    min-height: 100vh !important;
+}
+
+/* Sidebar content styling */
+.sidebar-content {
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+    padding: 0 !important;
+}
+
+/* User section styling */
+.sidebar-user {
+    padding: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.sidebar-user .card-body {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* Navigation styling */
+.nav-sidebar {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.nav-sidebar .nav-item {
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.nav-sidebar .nav-link {
+    padding: 1rem 1.5rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+
+.nav-sidebar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-right: 4px solid #60a5fa !important;
+}
+
+.nav-sidebar .nav-link i {
+    margin-left: 0.75rem !important;
+    width: 20px !important;
+    text-align: center !important;
+    font-size: 16px !important;
+}
+
+/* Submenu styling */
+.nav-sidebar .nav-group-sub {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.nav-sidebar .nav-group-sub .nav-link {
+    padding: 0.75rem 1.5rem 0.75rem 3rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* Mobile sidebar behavior */
+@media (max-width: 767.98px) {
+    .sidebar {
+        transform: translateX(100%) !important;
+        width: 280px !important;
+        max-width: 280px !important;
+        min-width: 280px !important;
+    }
+    
+    .sidebar.sidebar-mobile-main {
+        transform: translateX(0) !important;
+    }
+    
+    .page-content {
+        margin-right: 0 !important;
+    }
+    
+    /* Overlay for mobile */
+    .sidebar-mobile-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        z-index: 999 !important;
+        display: none !important;
+    }
+    
+    .sidebar.sidebar-mobile-main + .sidebar-mobile-overlay {
+        display: block !important;
+    }
+}
+
+/* Tablet sidebar behavior */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sidebar {
+        width: 240px !important;
+        max-width: 240px !important;
+        min-width: 240px !important;
+    }
+    
+    .page-content {
+        margin-right: 240px !important;
+    }
+}
+
+/* Desktop sidebar behavior */
+@media (min-width: 992px) {
+    .sidebar {
+        width: 260px !important;
+        max-width: 260px !important;
+        min-width: 260px !important;
+        transform: translateX(0) !important;
+    }
+    
+    .page-content {
+        margin-right: 260px !important;
+    }
+}
+
+/* Sidebar collapse states */
 body.sidebar-xs .sidebar-main,
 body.sidebar-xs .sidebar-main .sidebar-content,
 .sidebar-xs .sidebar-main,
 .sidebar-xs .sidebar-main .sidebar-content {
     width: 260px !important;
+    max-width: 260px !important;
+    min-width: 260px !important;
     transform: translateX(0) !important;
     visibility: visible !important;
     opacity: 1 !important;
 }
 
-/* Prevent mobile sidebar from hiding */
 body.sidebar-mobile-main .sidebar-main,
 body.sidebar-mobile-main .sidebar-main .sidebar-content,
 .sidebar-mobile-main .sidebar-main,
@@ -21,7 +189,6 @@ body.sidebar-mobile-main .sidebar-main .sidebar-content,
     opacity: 1 !important;
 }
 
-/* Prevent sidebar from being completely hidden */
 body.sidebar-main-hidden .sidebar-main,
 .sidebar-main-hidden .sidebar-main {
     transform: translateX(0) !important;
@@ -29,29 +196,7 @@ body.sidebar-main-hidden .sidebar-main,
     opacity: 1 !important;
 }
 
-/* Responsive adjustments - only when sidebar would normally collapse */
-@media (max-width: 991.98px) {
-    body.sidebar-xs .sidebar-main,
-    body.sidebar-xs .sidebar-main .sidebar-content {
-        width: 240px !important;
-    }
-}
-
-@media (max-width: 767.98px) {
-    body.sidebar-xs .sidebar-main,
-    body.sidebar-xs .sidebar-main .sidebar-content {
-        width: 220px !important;
-    }
-}
-
-@media (max-width: 575.98px) {
-    body.sidebar-xs .sidebar-main,
-    body.sidebar-xs .sidebar-main .sidebar-content {
-        width: 200px !important;
-    }
-}
-
-/* Ensure content area adjusts properly when sidebar is forced open */
+/* Content area adjustments for sidebar states */
 body.sidebar-xs .page-content {
     margin-right: 260px !important;
 }
@@ -64,12 +209,53 @@ body.sidebar-xs .page-content {
 
 @media (max-width: 767.98px) {
     body.sidebar-xs .page-content {
-        margin-right: 220px !important;
+        margin-right: 0 !important;
     }
 }
 
 @media (max-width: 575.98px) {
     body.sidebar-xs .page-content {
-        margin-right: 200px !important;
+        margin-right: 0 !important;
     }
+}
+
+/* Sidebar toggler styling */
+.sidebar-mobile-toggler {
+    position: fixed !important;
+    top: 1rem !important;
+    right: 1rem !important;
+    z-index: 1001 !important;
+    background: #1e3a8a !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 50% !important;
+    width: 50px !important;
+    height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+.sidebar-mobile-toggler:hover {
+    background: #1e40af !important;
+    transform: scale(1.1) !important;
+}
+
+/* Ensure proper scrolling */
+.sidebar-content::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+.sidebar-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 3px !important;
+}
+
+.sidebar-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5) !important;
 }

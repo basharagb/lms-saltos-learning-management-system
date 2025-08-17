@@ -1,5 +1,10 @@
 @extends('layouts.master')
 @section('page_title', 'إدارة المقررات الدراسية')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/courses-responsive.css') }}">
+@endsection
+
 @section('content')
 
 <style>
@@ -82,14 +87,14 @@
 <!-- Page Header -->
 <div class="courses-management-header">
     <div class="row align-items-center">
-        <div class="col-md-8">
+        <div class="col-md-8 col-sm-12">
             <h2 class="mb-2">
                 <i class="icon-books mr-3"></i>
                 إدارة المقررات الدراسية
             </h2>
             <p class="mb-0 opacity-90">إدارة شاملة لجميع المقررات الدراسية مع إمكانيات التسجيل والمتابعة</p>
         </div>
-        <div class="col-md-4 text-right">
+        <div class="col-md-4 col-sm-12 text-center text-md-right">
             <div class="stats-card">
                 <h3 class="mb-1">{{ $total_courses }}</h3>
                 <p class="mb-0">إجمالي المقررات</p>
@@ -107,7 +112,7 @@
     
     <form method="GET" action="{{ route('courses.index') }}" id="filterForm">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-6 col-12">
                 <div class="form-group">
                     <label for="class_id">البرنامج الأكاديمي:</label>
                     <select name="class_id" id="class_id" class="form-control">
@@ -121,7 +126,7 @@
                 </div>
             </div>
             
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-6 col-12">
                 <div class="form-group">
                     <label for="semester">الفصل الدراسي:</label>
                     <select name="semester" id="semester" class="form-control">
@@ -133,7 +138,7 @@
                 </div>
             </div>
             
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-6 col-12">
                 <div class="form-group">
                     <label for="academic_year">السنة الأكاديمية:</label>
                     <input type="text" name="academic_year" id="academic_year" class="form-control" 
@@ -141,7 +146,7 @@
                 </div>
             </div>
             
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-6 col-12">
                 <div class="form-group">
                     <label for="status">الحالة:</label>
                     <select name="status" id="status" class="form-control">
@@ -152,7 +157,7 @@
                 </div>
             </div>
             
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-6 col-12">
                 <div class="form-group">
                     <label for="search">البحث:</label>
                     <input type="text" name="search" id="search" class="form-control" 
@@ -161,11 +166,11 @@
                 </div>
             </div>
             
-            <div class="col-md-1">
+            <div class="col-md-1 col-sm-6 col-12">
                 <div class="form-group">
                     <label>&nbsp;</label>
-                    <div class="d-flex flex-column">
-                        <button type="submit" class="btn btn-primary mb-1">
+                    <div class="d-flex flex-column flex-sm-row">
+                        <button type="submit" class="btn btn-primary mb-2 mb-sm-0 mr-sm-2">
                             <i class="icon-search4"></i>
                         </button>
                         <a href="{{ route('courses.index') }}" class="btn btn-secondary">
@@ -180,14 +185,14 @@
 
 <!-- Courses Table -->
 <div class="courses-table-card">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="mb-0">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
+        <h5 class="mb-2 mb-md-0">
             <i class="icon-table2 mr-2"></i>
             قائمة المقررات
         </h5>
         
         @if(Qs::userIsTeamSA())
-        <div class="btn-group">
+        <div class="btn-group w-100 w-md-auto">
             <a href="{{ route('courses.create') }}" class="btn btn-success">
                 <i class="icon-plus2 mr-2"></i>
                 إضافة مقرر جديد
@@ -198,10 +203,10 @@
     
     <div class="row">
         @forelse($courses as $course)
-        <div class="col-md-6 col-lg-4">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="course-card">
-                <div class="d-flex justify-content-between align-items-start mb-3">
-                    <div>
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start mb-3">
+                    <div class="mb-2 mb-sm-0">
                         <h6 class="mb-1 font-weight-bold">{{ $course->name }}</h6>
                         <p class="text-muted mb-0">{{ $course->code }}</p>
                     </div>
@@ -212,8 +217,8 @@
                 
                 <div class="mb-3">
                     <p class="text-muted mb-2">{{ \Illuminate\Support\Str::limit($course->description, 100) }}</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="semester-badge">
+                    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center">
+                        <span class="semester-badge mb-2 mb-sm-0">
                             @if($course->semester == 'first') الفصل الأول
                             @elseif($course->semester == 'second') الفصل الثاني
                             @else الفصل الصيفي
@@ -230,8 +235,8 @@
                     <small class="text-muted d-block">الطلاب المسجلون: {{ $course->enrollments->count() }}</small>
                 </div>
                 
-                <div class="d-flex justify-content-between">
-                    <div class="btn-group btn-group-sm">
+                <div class="d-flex flex-column flex-sm-row justify-content-between">
+                    <div class="btn-group btn-group-sm mb-2 mb-sm-0">
                         <a href="{{ route('courses.show', $course->id) }}" class="btn btn-outline-primary">
                             <i class="icon-eye"></i> عرض
                         </a>

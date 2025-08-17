@@ -252,6 +252,8 @@
     .sidebar {
         transform: translateX(-100%) !important;
         transition: transform 0.3s ease !important;
+        width: 100% !important;
+        max-width: 280px !important;
     }
     
     .sidebar.sidebar-mobile-main {
@@ -320,6 +322,7 @@
     
     .sidebar {
         width: 240px !important;
+        max-width: 240px !important;
     }
     
     .page-content {
@@ -350,6 +353,126 @@
     
     .sidebar {
         width: 260px !important;
+        max-width: 260px !important;
+    }
+    
+    .page-content {
+        margin-right: 260px !important;
+    }
+}
+
+/* ===== SIDEBAR SPECIFIC FIXES ===== */
+.sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    height: 100vh !important;
+    z-index: 1000 !important;
+    overflow-y: auto !important;
+    background: #1e3a8a !important;
+    border-left: none !important;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sidebar-content {
+    width: 100% !important;
+    height: 100% !important;
+    overflow-y: auto !important;
+}
+
+.sidebar-user {
+    padding: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.nav-sidebar {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.nav-sidebar .nav-item {
+    margin: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.nav-sidebar .nav-link {
+    padding: 1rem 1.5rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease !important;
+}
+
+.nav-sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+}
+
+.nav-sidebar .nav-link.active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-right: 4px solid #60a5fa !important;
+}
+
+.nav-sidebar .nav-link i {
+    margin-left: 0.75rem !important;
+    width: 20px !important;
+    text-align: center !important;
+}
+
+/* Fix sidebar spacing issues */
+.sidebar-main {
+    width: 260px !important;
+    max-width: 260px !important;
+    min-width: 260px !important;
+}
+
+.sidebar-main .sidebar-content {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* Ensure content area is properly positioned */
+.page-content {
+    margin-right: 260px !important;
+    transition: margin-right 0.3s ease !important;
+}
+
+/* Mobile sidebar fixes */
+@media (max-width: 767.98px) {
+    .sidebar {
+        width: 280px !important;
+        max-width: 280px !important;
+        min-width: 280px !important;
+    }
+    
+    .page-content {
+        margin-right: 0 !important;
+    }
+    
+    .sidebar.sidebar-mobile-main {
+        transform: translateX(0) !important;
+    }
+}
+
+/* Tablet sidebar fixes */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sidebar {
+        width: 240px !important;
+        max-width: 240px !important;
+        min-width: 240px !important;
+    }
+    
+    .page-content {
+        margin-right: 240px !important;
+    }
+}
+
+/* Desktop sidebar fixes */
+@media (min-width: 992px) {
+    .sidebar {
+        width: 260px !important;
+        max-width: 260px !important;
+        min-width: 260px !important;
     }
     
     .page-content {

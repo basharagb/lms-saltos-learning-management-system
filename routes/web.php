@@ -11,6 +11,11 @@ Route::get('/test-arabic', function () {
     return view('test_arabic');
 });
 
+// Test route for responsiveness and language
+Route::get('/test-responsive', function () {
+    return view('test_responsive');
+});
+
 // Test route for super admin
 Route::get('/test-super-admin', function () {
     return 'Super Admin Test Route Working!';
