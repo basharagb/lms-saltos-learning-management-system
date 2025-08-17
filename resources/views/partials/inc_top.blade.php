@@ -28,7 +28,13 @@
 {{-- Responsive Content CSS--}}
 <link href=" {{ asset('assets/css/responsive-content.css') }}" rel="stylesheet" type="text/css">
 
+{{-- Global Responsive CSS--}}
+<link href=" {{ asset('assets/css/global-responsive.css') }}" rel="stylesheet" type="text/css">
+
 {{--   Core JS files --}}
     <script src="{{ asset('global_assets/js/main/jquery.min.js') }} "></script>
     <script src="{{ asset('global_assets/js/main/bootstrap.bundle.min.js') }} "></script>
     <script src="{{ asset('global_assets/js/plugins/loaders/blockui.min.js') }} "></script>
+
+{{-- Arabic DataTables Localization --}}
+<script src="{{ asset('assets/js/arabic-datatables.js') }}"></script>
