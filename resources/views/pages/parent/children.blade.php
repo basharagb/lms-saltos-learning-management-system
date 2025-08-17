@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('page_title', 'My Children')
+@section('page_title', 'أطفالي')
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">My Children</h6>
+            <h6 class="card-title">أطفالي</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
@@ -12,13 +12,13 @@
             <table class="table datatable-button-html5-columns">
                 <thead>
                 <tr>
-                    <th>S/N</th>
-                    <th>Photo</th>
-                    <th>Name</th>
-                    <th>ADM_No</th>
-                    <th>Section</th>
-                    <th>Email</th>
-                    <th>Action</th>
+                    <th>الرقم</th>
+                    <th>الصورة</th>
+                    <th>الاسم</th>
+                    <th>رقم القبول</th>
+                    <th>القسم</th>
+                    <th>البريد الإلكتروني</th>
+                    <th>الإجراءات</th>
                 </tr>
                 </thead>
                 <tbody>

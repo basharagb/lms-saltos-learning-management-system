@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\User;
-use Eloquent;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class StudentRecord extends Eloquent
+class StudentRecord extends Model
 {
     use HasFactory;
 

@@ -1,6 +1,9 @@
-## **Laravel School Management System** 
+## **Laravel School Management System**
 
-**LAVSMS** is developed for educational institutions like schools and colleges built on Laravel 8
+**LAVSMS** is developed for educational institutions like schools and colleges built on Laravel 10
+
+**Design by:** Bashar Zabadani
+**Development by:** CJ Inspired
 
 **SCREENSHOTS** 
 
@@ -34,9 +37,9 @@ Administrators (Super Admin & Admin)
 - Student
 - Parent
 
-**Requirements** 
+**Requirements**
 
-Check Laravel 8 Requirements https://laravel.com/docs/8.x
+Check Laravel 10 Requirements https://laravel.com/docs/10.x
 
 **Installation**
 - Install dependencies (composer install)
@@ -54,6 +57,7 @@ After seeding. Login details as follows:
 |  Teacher | teacher | teacher@teacher.com | cj |
 |  Parent | parent | parent@parent.com | cj |
 |  Accountant | accountant | accountant@accountant.com | cj |
+|  Librarian | librarian | librarian@librarian.com | cj |
 |  Student | student | student@student.com | cj |
 
 #### **FUNCTIONS OF ACCOUNTS** 

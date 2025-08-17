@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use App\User;
-use Eloquent;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Model;
 
-class Pin extends Eloquent
+class Pin extends Model
 {
     protected $fillable = ['code', 'user_id', 'student_id', 'times_used', 'used'];
 

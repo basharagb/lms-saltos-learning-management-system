@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Section;
 use App\Models\StudentRecord;
-use App\User;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -39,7 +39,7 @@ class StudentRecordsTableSeeder extends Seeder
                 ->count($count)
                 ->create([
                     'user_type' => 'student',
-                    'password' => Hash::make('student'),
+                    'password' => Hash::make('123456789'),
                 ]);
         }
 
@@ -52,9 +52,9 @@ class StudentRecordsTableSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Student CJ',
             'user_type' => 'student',
-            'username' => 'student',
-            'password' => Hash::make('cj'),
-            'email' => 'student@student.com',
+            'username' => 'student_cj',
+            'password' => Hash::make('123456789'),
+            'email' => 'student_cj@student.com',
 
         ]);
 

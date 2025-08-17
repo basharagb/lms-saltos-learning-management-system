@@ -66,26 +66,26 @@
     @if($selected)
         <div class="card">
             <div class="card-header">
-                <h6 class="card-title font-weight-bold">Tabulation Sheet for {{ $my_class->name.' '.$section->name.' - '.$ex->name.' ('.$year.')' }}</h6>
+                <h6 class="card-title font-weight-bold">جدول النتائج لـ {{ $my_class->name.' '.$section->name.' - '.$ex->name.' ('.$year.')' }}</h6>
             </div>
             <div class="card-body">
                 <table class="table table-responsive table-striped">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>NAMES_OF_STUDENTS_IN_CLASS</th>
+                        <th>أسماء الطلاب في الفصل</th>
                        @foreach($subjects as $sub)
                        <th title="{{ $sub->name }}" rowspan="2">{{ strtoupper($sub->slug ?: $sub->name) }}</th>
                        @endforeach
                         {{--@if($ex->term == 3)
-                        <th>1ST TERM TOTAL</th>
-                        <th>2ND TERM TOTAL</th>
-                        <th>3RD TERM TOTAL</th>
-                        <th style="color: darkred">CUM Total</th>
-                        <th style="color: darkblue">CUM Average</th>
+                        <th>مجموع الفصل الأول</th>
+                        <th>مجموع الفصل الثاني</th>
+                        <th>مجموع الفصل الثالث</th>
+                        <th style="color: darkred">المجموع التراكمي</th>
+                        <th style="color: darkblue">المعدل التراكمي</th>
                         @endif--}}
-                        <th style="color: darkred">Total</th>
-                        <th style="color: darkblue">Average</th>
+                        <th style="color: darkred">المجموع</th>
+                        <th style="color: darkblue">المعدل</th>
                         <th style="color: darkgreen">Position</th>
                     </tr>
                     </thead>

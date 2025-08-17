@@ -1,7 +1,17 @@
 <div class="navbar navbar-expand-md navbar-dark">
     <div class="mt-2 mr-5">
         <a href="{{ route('dashboard') }}" class="d-inline-block">
-        <h4 class="text-bold text-white">{{ Qs::getSystemName() }}</h4>
+            <div class="d-flex align-items-center">
+                <div class="university-logo-header ml-3">
+                    <div style="background: var(--university-white); border-radius: 8px; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">
+                        <i class="icon-graduation2" style="font-size: 1.8rem; color: var(--university-primary);"></i>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-bold text-white mb-0" style="font-weight: 700;">{{ Qs::getSystemName() }}</h4>
+                    <small class="text-white-50">نظام إدارة الطلاب الجامعي</small>
+                </div>
+            </div>
         </a>
     </div>
   {{--  <div class="navbar-brand">
@@ -41,11 +51,11 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ Qs::userIsStudent() ? route('students.show', Qs::hash(Qs::findStudentRecord(Auth::user()->id)->id)) : route('users.show', Qs::hash(Auth::user()->id)) }}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                    <a href="{{ Qs::userIsStudent() ? route('students.show', Qs::hash(Qs::findStudentRecord(Auth::user()->id)->id)) : route('users.show', Qs::hash(Auth::user()->id)) }}" class="dropdown-item"><i class="icon-user-plus"></i> ملفي الشخصي</a>
                     <div class="dropdown-divider"></div>
-                    <a href="{{ route('my_account') }}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+                    <a href="{{ route('my_account') }}" class="dropdown-item"><i class="icon-cog5"></i> إعدادات الحساب</a>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
-          document.getElementById('logout-form').submit();" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
+          document.getElementById('logout-form').submit();" class="dropdown-item"><i class="icon-switch2"></i> تسجيل الخروج</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>

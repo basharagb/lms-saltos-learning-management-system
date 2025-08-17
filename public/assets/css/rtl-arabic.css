@@ -1,0 +1,382 @@
+/* RTL Arabic Styling for LAVSMS Dashboard */
+
+/* Import Arabic fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap');
+
+/* Global RTL and Arabic font settings */
+html {
+    direction: rtl !important;
+}
+
+body {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Sidebar RTL adjustments */
+.sidebar {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.sidebar-main {
+    right: 0 !important;
+    left: auto !important;
+}
+
+/* Navigation adjustments */
+.nav-sidebar .nav-item .nav-link {
+    text-align: right !important;
+    padding-right: 1rem !important;
+    padding-left: 2.5rem !important;
+}
+
+.nav-sidebar .nav-item .nav-link i {
+    margin-left: 0.75rem !important;
+    margin-right: 0 !important;
+    float: right !important;
+}
+
+/* Dropdown menu RTL */
+.dropdown-menu {
+    right: 0 !important;
+    left: auto !important;
+    text-align: right !important;
+}
+
+.dropdown-menu .dropdown-item {
+    text-align: right !important;
+    padding-right: 1.5rem !important;
+    padding-left: 1rem !important;
+}
+
+.dropdown-menu .dropdown-item i {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+    float: right !important;
+}
+
+/* Content wrapper adjustments */
+.content-wrapper {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+/* Page content RTL */
+.page-content {
+    direction: rtl !important;
+}
+
+/* Top navbar RTL */
+.navbar {
+    direction: rtl !important;
+}
+
+.navbar-nav {
+    direction: rtl !important;
+}
+
+.navbar-nav .nav-item {
+    text-align: right !important;
+}
+
+/* User menu in sidebar */
+.sidebar-user .media {
+    direction: rtl !important;
+}
+
+.sidebar-user .media .mr-3 {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+
+.sidebar-user .media .ml-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+
+/* Form controls RTL */
+.form-control {
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+.form-group label {
+    text-align: right !important;
+    float: right !important;
+}
+
+/* Button adjustments */
+.btn {
+    direction: rtl !important;
+}
+
+/* Table RTL */
+.table {
+    direction: rtl !important;
+}
+
+.table th,
+.table td {
+    text-align: right !important;
+}
+
+/* Card RTL */
+.card {
+    direction: rtl !important;
+}
+
+.card-header {
+    text-align: right !important;
+}
+
+.card-body {
+    text-align: right !important;
+}
+
+/* Alert RTL */
+.alert {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Breadcrumb RTL */
+.breadcrumb {
+    direction: rtl !important;
+}
+
+.breadcrumb-item {
+    text-align: right !important;
+}
+
+/* Modal RTL */
+.modal {
+    direction: rtl !important;
+}
+
+.modal-header {
+    text-align: right !important;
+}
+
+.modal-body {
+    text-align: right !important;
+}
+
+.modal-footer {
+    direction: rtl !important;
+}
+
+/* Pagination RTL */
+.pagination {
+    direction: rtl !important;
+}
+
+/* Input group RTL */
+.input-group {
+    direction: rtl !important;
+}
+
+/* Custom adjustments for specific elements */
+.sidebar-control {
+    right: auto !important;
+    left: 1rem !important;
+}
+
+/* Fix for submenu arrows in RTL */
+.nav-item-submenu > .nav-link::after {
+    right: auto !important;
+    left: 1rem !important;
+    transform: rotate(180deg) !important;
+}
+
+.nav-item-submenu.nav-item-open > .nav-link::after {
+    transform: rotate(270deg) !important;
+}
+
+/* Arabic text improvements */
+.arabic-text {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    line-height: 1.6 !important;
+    letter-spacing: 0.02em !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .sidebar-mobile-main {
+        right: 0 !important;
+        left: auto !important;
+    }
+    
+    .navbar-toggler {
+        margin-right: 0 !important;
+        margin-left: auto !important;
+    }
+}
+
+/* Fix for icons in RTL */
+.icon-arrow-right5::before {
+    content: '\e9c4' !important; /* Left arrow for RTL */
+}
+
+.icon-arrow-left5::before {
+    content: '\e9c7' !important; /* Right arrow for RTL */
+}
+
+/* Ensure proper spacing for Arabic text */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    text-align: right !important;
+}
+
+p, span, div {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+}
+
+/* Login page RTL adjustments */
+.login-form {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.login-form .form-group {
+    text-align: right !important;
+}
+
+.login-form .form-control {
+    text-align: right !important;
+}
+
+/* Dashboard specific adjustments */
+.content {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Statistics cards RTL */
+.card-body .media {
+    direction: rtl !important;
+}
+
+.card-body .media .media-object {
+    margin-left: 1rem !important;
+    margin-right: 0 !important;
+}
+
+/* Fix for floating elements */
+.float-left {
+    float: right !important;
+}
+
+.float-right {
+    float: left !important;
+}
+
+/* Text alignment utilities for RTL */
+.text-left {
+    text-align: right !important;
+}
+
+.text-right {
+    text-align: left !important;
+}
+
+/* Enhanced Arabic text styling for comprehensive student page */
+.student-management-header h2,
+.filter-card h5,
+.students-table-card h5 {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    font-weight: 600 !important;
+    text-align: right !important;
+}
+
+/* Arabic form labels and inputs */
+.form-label-modern,
+.filter-card label {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    font-weight: 500 !important;
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* Arabic table headers */
+.students-table-card table th {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    font-weight: 600 !important;
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* Arabic table data */
+.students-table-card table td {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* Arabic button text */
+.btn-filter,
+.btn-reset,
+.btn-primary,
+.btn-success,
+.btn-info {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    font-weight: 500 !important;
+}
+
+/* Arabic dropdown items */
+.dropdown-item {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* Arabic search and filter inputs */
+.form-control {
+    text-align: right !important;
+    direction: rtl !important;
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+}
+
+/* Arabic placeholder text */
+.form-control::placeholder {
+    text-align: right !important;
+    direction: rtl !important;
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+}
+
+/* DataTables Arabic RTL support */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    text-align: right !important;
+    direction: rtl !important;
+}
+
+/* Arabic pagination */
+.page-link {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    text-align: center !important;
+}
+
+/* Stats card Arabic text */
+.stats-card h3,
+.stats-card p {
+    font-family: 'Cairo', 'Tajawal', Arial, sans-serif !important;
+    text-align: center !important;
+}
+
+/* University-style color scheme variables */
+:root {
+    --university-primary: #3b82f6;
+    --university-secondary: #1e40af;
+    --university-success: #10b981;
+    --university-warning: #f59e0b;
+    --university-danger: #ef4444;
+    --university-info: #06b6d4;
+    --university-light: #f8fafc;
+    --university-dark: #1f2937;
+}

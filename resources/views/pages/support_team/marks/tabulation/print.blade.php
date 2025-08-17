@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Tabulation Sheet - {{ $my_class->name.' '.$section->name.' - '.$ex->name.' ('.$year.')' }}</title>
+    <title>جدول النتائج - {{ $my_class->name.' '.$section->name.' - '.$ex->name.' ('.$year.')' }}</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/print_tabulation.css') }}" />
 </head>
 <body>
@@ -16,7 +16,7 @@
                     {{-- <strong><span style="color: #1b0c80; font-size: 20px;">MINNA, NIGER STATE</span></strong><br/>--}}
                     <strong><span
                                 style="color: #000; font-size: 15px;"><i>{{ ucwords($s['address']) }}</i></span></strong><br/>
-                    <strong><span style="color: #000; font-size: 15px;"> TABULATION SHEET FOR {{ strtoupper($my_class->name.' '.$section->name.' - '.$ex->name.' ('.$year.')' ) }}
+                    <strong><span style="color: #000; font-size: 15px;"> جدول النتائج لـ {{ strtoupper($my_class->name.' '.$section->name.' - '.$ex->name.' ('.$year.')' ) }}
                     </span></strong>
                 </td>
             </tr>
@@ -34,20 +34,20 @@
             <thead>
             <tr>
                 <th>#</th>
-                <th>NAMES_OF_STUDENTS_IN_CLASS</th>
+                <th>أسماء الطلاب في الفصل</th>
                 @foreach($subjects as $sub)
                     <th rowspan="2">{{ strtoupper($sub->slug ?: $sub->name) }}</th>
                 @endforeach
              {{--   @if($ex->term == 3)
-                    <th>1ST TERM TOTAL</th>
-                    <th>2ND TERM TOTAL</th>
-                    <th>3RD TERM TOTAL</th>
-                    <th style="color: darkred">CUM Total</th>
-                    <th style="color: darkblue">CUM Average</th>
+                    <th>مجموع الفصل الأول</th>
+                    <th>مجموع الفصل الثاني</th>
+                    <th>مجموع الفصل الثالث</th>
+                    <th style="color: darkred">المجموع التراكمي</th>
+                    <th style="color: darkblue">المعدل التراكمي</th>
                 @endif--}}
-                <th style="color: darkred">Total</th>
-                <th style="color: darkblue">Average</th>
-                <th style="color: darkgreen">Position</th>
+                <th style="color: darkred">المجموع</th>
+                <th style="color: darkblue">المعدل</th>
+                <th style="color: darkgreen">الترتيب</th>
             </tr>
             </thead>
             <tbody>

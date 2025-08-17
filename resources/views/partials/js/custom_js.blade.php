@@ -125,10 +125,10 @@
 
     function confirmDelete(id) {
         swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this item!",
+            title: "هل أنت متأكد؟",
+            text: "بمجرد الحذف، لن تتمكن من استرداد هذا العنصر!",
             icon: "warning",
-            buttons: true,
+            buttons: ["إلغاء", "حذف"],
             dangerMode: true
         }).then(function(willDelete){
             if (willDelete) {
@@ -139,10 +139,10 @@
 
     function confirmReset(id) {
         swal({
-            title: "Are you sure?",
-            text: "This will reset this item to default state",
+            title: "هل أنت متأكد؟",
+            text: "سيؤدي هذا إلى إعادة تعيين هذا العنصر إلى الحالة الافتراضية",
             icon: "warning",
-            buttons: true,
+            buttons: ["إلغاء", "إعادة تعيين"],
             dangerMode: true
         }).then(function(willDelete){
             if (willDelete) {
@@ -254,8 +254,8 @@
     }
 
     function enableBtn(btn){
-        var btnText = btn.data('text') ? btn.data('text') : 'Submit Form';
-        btn.prop('disabled', false).html(btnText + '<i class="icon-paperplane ml-2"></i>');
+        var btnText = btn.data('text') ? btn.data('text') : 'إرسال النموذج';
+        btn.prop('disabled', false).html(btnText + '<i class="icon-paperplane mr-2"></i>');
     }
 
     function displayAjaxErr(errors){

@@ -67,7 +67,14 @@ class StudentRepo {
 
     public function getAll()
     {
-        return $this->activeStudents()->with('user');
+        return $this->activeStudents()->with(['user', 'my_class', 'section']);
+    }
+
+    public function getAllWithValidUsers()
+    {
+        return $this->activeStudents()
+            ->with(['user', 'my_class', 'section'])
+            ->whereHas('user'); // Only get students that have a user record
     }
 
     public function getGradRecord($data=[])

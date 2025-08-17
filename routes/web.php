@@ -6,6 +6,11 @@ Auth::routes();
 Route::get('/privacy-policy', 'HomeController@privacy_policy')->name('privacy_policy');
 Route::get('/terms-of-use', 'HomeController@terms_of_use')->name('terms_of_use');
 
+// Test route for Arabic functionality
+Route::get('/test-arabic', function () {
+    return view('test_arabic');
+});
+
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -19,6 +24,17 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/change_password', 'MyAccountController@change_pass')->name('my_account.change_pass');
     });
 
+    /*************** Student Portal *****************/
+    Route::group(['prefix' => 'student-portal'], function(){
+        Route::get('/', 'StudentPortalController@index')->name('student_portal.index');
+        Route::get('/academic-services', 'StudentPortalController@academicServices')->name('student_portal.academic_services');
+        Route::get('/student-requests', 'StudentPortalController@studentRequests')->name('student_portal.student_requests');
+        Route::get('/course-registration', 'StudentPortalController@courseRegistration')->name('student_portal.course_registration');
+        Route::get('/academic-records', 'StudentPortalController@academicRecords')->name('student_portal.academic_records');
+        Route::get('/financial-services', 'StudentPortalController@financialServices')->name('student_portal.financial_services');
+        Route::get('/elearning', 'StudentPortalController@elearning')->name('student_portal.elearning');
+    });
+
     /*************** Support Team *****************/
     Route::group(['namespace' => 'SupportTeam',], function(){
 
@@ -28,6 +44,17 @@ Route::group(['middleware' => 'auth'], function () {
             Route::get('graduated', 'StudentRecordController@graduated')->name('students.graduated');
             Route::put('not_graduated/{id}', 'StudentRecordController@not_graduated')->name('st.not_graduated');
             Route::get('list/{class_id}', 'StudentRecordController@listByClass')->name('students.list')->middleware('teamSAT');
+        });
+
+        /*************** Modern Students Management *****************/
+        Route::group(['prefix' => 'modern-students'], function(){
+            Route::get('/', 'ModernStudentController@index')->name('modern_students.index');
+            Route::get('/create', 'ModernStudentController@create')->name('modern_students.create')->middleware('teamSA');
+            Route::get('/search', 'ModernStudentController@search')->name('modern_students.search');
+            Route::get('/show/{id}', 'ModernStudentController@show')->name('modern_students.show');
+            Route::post('/bulk-delete', 'ModernStudentController@bulkDelete')->name('modern_students.bulk_delete')->middleware('super_admin');
+            Route::get('/sections/{class_id}', 'ModernStudentController@getClassSections')->name('modern_students.sections');
+            Route::get('/data', 'ModernStudentController@getStudentsData')->name('modern_students.data');
 
             /* Promotions */
             Route::post('promote_selector', 'PromotionController@selector')->name('students.promote_selector');
@@ -144,6 +171,19 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('exams', 'ExamController');
         Route::resource('dorms', 'DormController');
         Route::resource('payments', 'PaymentController');
+        Route::resource('courses', 'CourseController');
+
+        /*************** Course Enrollments *****************/
+        Route::group(['prefix' => 'courses'], function(){
+            Route::get('{id}/enrollments', 'CourseController@enrollments')->name('courses.enrollments');
+            Route::post('{id}/enroll', 'CourseController@enroll')->name('courses.enroll');
+            Route::put('enrollments/{enrollmentId}', 'CourseController@updateEnrollment')->name('courses.update_enrollment');
+        });
+
+        /*************** Helper Routes *****************/
+        Route::get('get-class-sections/{class_id}', 'AjaxController@getClassSections');
+        Route::get('get-lgas/{state_id}', 'AjaxController@getLGAs');
+        Route::get('search-parents', 'AjaxController@searchParents');
 
     });
 
