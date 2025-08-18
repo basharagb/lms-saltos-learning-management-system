@@ -1,17 +1,17 @@
 @extends('layouts.master')
-@section('page_title', 'Manage Classes')
+@section('page_title', __('classes.manage_classes'))
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Manage Classes</h6>
+            <h6 class="card-title">{{ __('classes.manage_classes') }}</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
-                <li class="nav-item"><a href="#all-classes" class="nav-link active" data-toggle="tab">Manage Classes</a></li>
-                <li class="nav-item"><a href="#new-class" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Create New Class</a></li>
+                <li class="nav-item"><a href="#all-classes" class="nav-link active" data-toggle="tab">{{ __('classes.manage_classes_tab') }}</a></li>
+                <li class="nav-item"><a href="#new-class" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> {{ __('classes.create_new_class_tab') }}</a></li>
             </ul>
 
             <div class="tab-content">
@@ -19,10 +19,10 @@
                         <table class="table datatable-button-html5-columns">
                             <thead>
                             <tr>
-                                <th>S/N</th>
-                                <th>Name</th>
-                                <th>Class Type</th>
-                                <th>Action</th>
+                                <th>{{ __('classes.serial_number') }}</th>
+                                <th>{{ __('classes.name') }}</th>
+                                <th>{{ __('classes.class_type') }}</th>
+                                <th>{{ __('classes.action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,11 +41,11 @@
                                                 <div class="dropdown-menu dropdown-menu-left">
                                                     @if(Qs::userIsTeamSA())
                                                     {{--Edit--}}
-                                                    <a href="{{ route('classes.edit', $c->id) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                                    <a href="{{ route('classes.edit', $c->id) }}" class="dropdown-item"><i class="icon-pencil"></i> {{ __('classes.edit') }}</a>
                                                    @endif
                                                         @if(Qs::userIsSuperAdmin())
                                                     {{--Delete--}}
-                                                    <a id="{{ $c->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                    <a id="{{ $c->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> {{ __('classes.delete') }}</a>
                                                     <form method="post" id="item-delete-{{ $c->id }}" action="{{ route('classes.destroy', $c->id) }}" class="hidden">@csrf @method('delete')</form>
                                                         @endif
 
@@ -65,7 +65,7 @@
                             <div class="alert alert-info border-0 alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
 
-                                <span>When a class is created, a Section will be automatically created for the class, you can edit it or add more sections to the class at <a target="_blank" href="{{ route('sections.index') }}">Manage Sections</a></span>
+                                <span>{!! __('classes.class_creation_info', ['route' => route('sections.index')]) !!}</span>
                             </div>
                         </div>
                     </div>
@@ -75,16 +75,16 @@
                             <form class="ajax-store" method="post" action="{{ route('classes.store') }}">
                                 @csrf
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">{!! __('classes.name_required') !!}</label>
                                     <div class="col-lg-9">
-                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="Name of Class">
+                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="{{ __('classes.name_placeholder') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Class Type</label>
+                                    <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">{{ __('classes.class_type') }}</label>
                                     <div class="col-lg-9">
-                                        <select required data-placeholder="Select Class Type" class="form-control select" name="class_type_id" id="class_type_id">
+                                        <select required data-placeholder="{{ __('classes.select_class_type') }}" class="form-control select" name="class_type_id" id="class_type_id">
                                             @foreach($class_types as $ct)
                                                 <option {{ old('class_type_id') == $ct->id ? 'selected' : '' }} value="{{ $ct->id }}">{{ $ct->name }}</option>
                                             @endforeach
@@ -93,7 +93,7 @@
                                 </div>
 
                                 <div class="text-right">
-                                    <button id="ajax-btn" type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
+                                    <button id="ajax-btn" type="submit" class="btn btn-primary">{{ __('classes.submit_form') }} <i class="icon-paperplane ml-2"></i></button>
                                 </div>
                             </form>
                         </div>

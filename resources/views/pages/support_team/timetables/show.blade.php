@@ -1,20 +1,20 @@
 @extends('layouts.master')
-@section('page_title', 'View TimeTable')
+@section('page_title', __('timetables.view_timetable'))
 @section('content')
 
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-4"><h6 class="card-title"><strong>Name: </strong> {{ $ttr->name }}</h6></div>
-                <div class="col-md-4"><h6 class="card-title"><strong>Class: </strong> {{ $my_class->name }}</h6></div>
-                <div class="col-md-4"><h6 class="card-title"><strong>Year: </strong> {{ ($ttr->exam_id) ? 'Exam TimeTable' : 'Class TimeTable' }} {{ '('.$ttr->year.')' }}</h6></div>
+                <div class="col-md-4"><h6 class="card-title"><strong>{{ __('timetables.name') }}: </strong> {{ $ttr->name }}</h6></div>
+                <div class="col-md-4"><h6 class="card-title"><strong>{{ __('timetables.class') }}: </strong> {{ $my_class->name }}</h6></div>
+                <div class="col-md-4"><h6 class="card-title"><strong>{{ __('timetables.year') }}: </strong> {{ ($ttr->exam_id) ? __('timetables.exam_timetable') : __('timetables.class_timetable') }} {{ '('.$ttr->year.')' }}</h6></div>
             </div>
         </div>
             <div class="card-body">
                 <table class="table table-responsive table-striped">
                     <thead>
                     <tr>
-                        <th rowspan="2">Time <i class="icon-arrow-right7 ml-2"></i> <br> Date<i class="icon-arrow-down7 ml-2"></i>
+                        <th rowspan="2">{!! __('timetables.time_arrow_right') !!} <br> {!! __('timetables.date_arrow_down') !!}
                         </th>
                         @foreach($time_slots as $tms)
                             <th rowspan="2">{{ $tms->time_from }} <br>
@@ -40,7 +40,7 @@
                 </table>
                 {{--Print Button--}}
                 <div class="text-center mt-4">
-                    <a target="_blank" href="{{ route('ttr.print', $ttr->id) }}" class="btn btn-danger btn-lg"><i class="icon-printer mr-2"></i> Print Timetable</a>
+                    <a target="_blank" href="{{ route('ttr.print', $ttr->id) }}" class="btn btn-danger btn-lg"><i class="icon-printer mr-2"></i> {{ __('timetables.print_timetable') }}</a>
                 </div>
             </div>
         </div>

@@ -1,17 +1,17 @@
 @extends('layouts.master')
-@section('page_title', 'Manage Payments')
+@section('page_title', __('payments.manage_payments'))
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title font-weight-bold">Manage Payment Records for {{ $sr->user->name}} </h6>
+            <h6 class="card-title font-weight-bold">{{ __('payments.manage_payments') }} {{ __('payments.for') }} {{ $sr->user->name}} </h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
                 <ul class="nav nav-tabs nav-tabs-highlight">
-                    <li class="nav-item"><a href="#all-uc" class="nav-link active" data-toggle="tab">Incomplete Payments</a></li>
-                    <li class="nav-item"><a href="#all-cl" class="nav-link" data-toggle="tab">Completed Payments</a></li>
+                    <li class="nav-item"><a href="#all-uc" class="nav-link active" data-toggle="tab">{{ __('payments.incomplete_payments') }}</a></li>
+                    <li class="nav-item"><a href="#all-cl" class="nav-link" data-toggle="tab">{{ __('payments.completed_payments') }}</a></li>
                 </ul>
 
         <div class="tab-content">
@@ -20,15 +20,15 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Pay_Ref</th>
-                        <th>Amount</th>
-                        <th>Paid</th>
-                        <th>Balance</th>
-                        <th>Pay Now</th>
-                        <th>Receipt_No</th>
-                        <th>Year</th>
-                        <th>Action</th>
+                        <th>{{ __('payments.title') }}</th>
+                        <th>{{ __('payments.pay_ref') }}</th>
+                        <th>{{ __('payments.amount') }}</th>
+                        <th>{{ __('payments.paid') }}</th>
+                        <th>{{ __('payments.balance') }}</th>
+                        <th>{{ __('payments.pay_now') }}</th>
+                        <th>{{ __('payments.receipt_no') }}</th>
+                        <th>{{ __('payments.year') }}</th>
+                        <th>{{ __('payments.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -53,10 +53,10 @@
                                     @csrf
                              <div class="row">
                                  <div class="col-md-7">
-                                     <input min="1" max="{{ $uc->balance ?: $uc->payment->amount }}" id="val-{{ Qs::hash($uc->id) }}" class="form-control" required placeholder="Pay Now" title="Pay Now" name="amt_paid" type="number">
+                                     <input min="1" max="{{ $uc->balance ?: $uc->payment->amount }}" id="val-{{ Qs::hash($uc->id) }}" class="form-control" required placeholder="{{ __('payments.pay_now_placeholder') }}" title="{{ __('payments.pay_now_title') }}" name="amt_paid" type="number">
                                  </div>
                                  <div class="col-md-5">
-                                     <button data-text="Pay" class="btn btn-danger" type="submit">Pay <i class="icon-paperplane ml-2"></i></button>
+                                     <button data-text="{{ __('payments.pay_now') }}" class="btn btn-danger" type="submit">{{ __('payments.pay_now') }} <i class="icon-paperplane ml-2"></i></button>
                                  </div>
                              </div>
                                 </form>
@@ -76,11 +76,11 @@
                                         <div class="dropdown-menu dropdown-menu-left">
 
                                             {{--Reset Payment--}}
-                                            <a id="{{ Qs::hash($uc->id) }}" onclick="confirmReset(this.id)" href="#" class="dropdown-item"><i class="icon-reset"></i> Reset Payment</a>
+                                            <a id="{{ Qs::hash($uc->id) }}" onclick="confirmReset(this.id)" href="#" class="dropdown-item"><i class="icon-reset"></i> {{ __('payments.reset_payment') }}</a>
                                             <form method="post" id="item-reset-{{ Qs::hash($uc->id) }}" action="{{ route('payments.reset_record', Qs::hash($uc->id)) }}" class="hidden">@csrf @method('delete')</form>
 
                                             {{--Receipt--}}
-                                                <a target="_blank" href="{{ route('payments.receipts', Qs::hash($uc->id)) }}" class="dropdown-item"><i class="icon-printer"></i> Print Receipt</a>
+                                                <a target="_blank" href="{{ route('payments.receipts', Qs::hash($uc->id)) }}" class="dropdown-item"><i class="icon-printer"></i> {{ __('payments.print_receipt') }}</a>
                                             {{--PDF Receipt--}}
                             {{--                    <a  href="{{ route('payments.pdf_receipts', Qs::hash($uc->id)) }}" class="dropdown-item download-receipt"><i class="icon-download"></i> Download Receipt</a>--}}
 
@@ -99,12 +99,12 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Pay_Ref</th>
-                        <th>Amount</th>
-                        <th>Receipt_No</th>
-                        <th>Year</th>
-                        <th>Action</th>
+                        <th>{{ __('payments.title') }}</th>
+                        <th>{{ __('payments.pay_ref') }}</th>
+                        <th>{{ __('payments.amount') }}</th>
+                        <th>{{ __('payments.receipt_no') }}</th>
+                        <th>{{ __('payments.year') }}</th>
+                        <th>{{ __('payments.action') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -131,14 +131,14 @@
                                         <div class="dropdown-menu dropdown-menu-left">
 
                                             {{--Reset Payment--}}
-                                            <a id="{{ Qs::hash($cl->id) }}" onclick="confirmReset(this.id)" href="#" class="dropdown-item"><i class="icon-reset"></i> Reset Payment</a>
+                                            <a id="{{ Qs::hash($cl->id) }}" onclick="confirmReset(this.id)" href="#" class="dropdown-item"><i class="icon-reset"></i> {{ __('payments.reset_payment') }}</a>
                                             <form method="post" id="item-reset-{{ Qs::hash($cl->id) }}" action="{{ route('payments.reset_record', Qs::hash($cl->id)) }}" class="hidden">@csrf @method('delete')</form>
 
                                             {{--Receipt--}}
-                                            <a target="_blank" href="{{ route('payments.receipts', Qs::hash($cl->id)) }}" class="dropdown-item"><i class="icon-printer"></i> Print Receipt</a>
+                                            <a target="_blank" href="{{ route('payments.receipts', Qs::hash($cl->id)) }}" class="dropdown-item"><i class="icon-printer"></i> {{ __('payments.print_receipt') }}</a>
 
                                             {{--PDF Receipt--}}
-                                            {{--                    <a  href="{{ route('payments.pdf_receipts', Qs::hash($uc->id)) }}" class="dropdown-item download-receipt"><i class="icon-download"></i> Download Receipt</a>--}}
+                                            {{--                    <a  href="{{ route('payments.pdf_receipts', Qs::hash($uc->id)) }}" class="dropdown-item download-receipt"><i class="icon-spinner2"></i> {{ __('payments.download_receipt') }}</a>--}}
 
                                         </div>
                                     </div>

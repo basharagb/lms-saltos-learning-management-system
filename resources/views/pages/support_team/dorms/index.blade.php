@@ -1,17 +1,17 @@
 @extends('layouts.master')
-@section('page_title', 'Manage Dorms')
+@section('page_title', __('dorms.manage_dorms'))
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Manage Dorms</h6>
+            <h6 class="card-title">{{ __('dorms.manage_dorms') }}</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
-                <li class="nav-item"><a href="#all-dorms" class="nav-link active" data-toggle="tab">Manage Dorms</a></li>
-                <li class="nav-item"><a href="#new-dorm" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Create New Dorm</a></li>
+                <li class="nav-item"><a href="#all-dorms" class="nav-link active" data-toggle="tab">{{ __('dorms.manage_dorms_tab') }}</a></li>
+                <li class="nav-item"><a href="#new-dorm" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> {{ __('dorms.create_new_dorm') }}</a></li>
             </ul>
 
             <div class="tab-content">
@@ -19,10 +19,10 @@
                         <table class="table datatable-button-html5-columns">
                             <thead>
                             <tr>
-                                <th>S/N</th>
-                                <th>Name</th>
-                                <th>Description</th>
-                                <th>Action</th>
+                                <th>{{ __('dorms.serial_number') }}</th>
+                                <th>{{ __('dorms.name') }}</th>
+                                <th>{{ __('dorms.description') }}</th>
+                                <th>{{ __('dorms.action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,11 +41,11 @@
                                                 <div class="dropdown-menu dropdown-menu-left">
                                                     @if(Qs::userIsTeamSA())
                                                     {{--Edit--}}
-                                                    <a href="{{ route('dorms.edit', $d->id) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                                    <a href="{{ route('dorms.edit', $d->id) }}" class="dropdown-item"><i class="icon-pencil"></i> {{ __('dorms.edit') }}</a>
                                                    @endif
                                                         @if(Qs::userIsSuperAdmin())
                                                     {{--Delete--}}
-                                                    <a id="{{ $d->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                    <a id="{{ $d->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> {{ __('dorms.delete') }}</a>
                                                     <form method="post" id="item-delete-{{ $d->id }}" action="{{ route('dorms.destroy', $d->id) }}" class="hidden">@csrf @method('delete')</form>
                                                         @endif
 
@@ -66,21 +66,21 @@
                             <form class="ajax-store" method="post" action="{{ route('dorms.store') }}">
                                 @csrf
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">{!! __('dorms.name_required') !!}</label>
                                     <div class="col-lg-9">
-                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="Name of Dormitory">
+                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="{{ __('dorms.name_placeholder') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label font-weight-semibold">Description</label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">{{ __('dorms.description') }}</label>
                                     <div class="col-lg-9">
-                                        <input name="description" value="{{ old('description') }}"  type="text" class="form-control" placeholder="Description of Dormitory">
+                                        <input name="description" value="{{ old('description') }}"  type="text" class="form-control" placeholder="{{ __('dorms.description_placeholder') }}">
                                     </div>
                                 </div>
 
                                 <div class="text-right">
-                                    <button id="ajax-btn" type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
+                                    <button id="ajax-btn" type="submit" class="btn btn-primary">{{ __('dorms.submit_form') }} <i class="icon-paperplane ml-2"></i></button>
                                 </div>
                             </form>
                         </div>

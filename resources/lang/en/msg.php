@@ -20,5 +20,11 @@ return
     'pin_create' => 'Pins Generated Successfully',
     'del_teacher' => 'Before you can delete This Teacher, You must find a replacement for the subject(s) He/She teaches. View Teacher Profile to see His/Her Subjects',
     'invalid_time_slot' => 'The Start Time and End Time Cannot Be The Same',
+    'photo_upload_success' => 'Profile photo updated successfully!',
+    'photo_upload_error' => 'Please select a photo to upload.',
+    'photo_type_error' => 'Only JPG, PNG, and GIF images are allowed.',
+    'photo_size_error' => 'Photo size must be less than 2MB.',
+    'photo_remove_success' => 'Profile photo removed successfully!',
+    'photo_remove_error' => 'No photo to remove.',
 
 ];

@@ -558,7 +558,7 @@ function validateCurrentStep() {
 $('#my_class_id').on('change', function() {
     const classId = $(this).val();
     if (classId) {
-        $.get(`/get-class-sections/${classId}`, function(sections) {
+        $.get(`{{ route('get-class-sections', '') }}/${classId}`, function(sections) {
             let options = '<option value="">اختر القسم</option>';
             sections.forEach(function(section) {
                 options += `<option value="${section.id}">${section.name}</option>`;
@@ -574,7 +574,7 @@ $('#my_class_id').on('change', function() {
 $('#state_id').on('change', function() {
     const stateId = $(this).val();
     if (stateId) {
-        $.get(`/get-lgas/${stateId}`, function(lgas) {
+        $.get(`{{ route('get-lgas', '') }}/${stateId}`, function(lgas) {
             let options = '<option value="">اختر المنطقة</option>';
             lgas.forEach(function(lga) {
                 options += `<option value="${lga.id}">${lga.name}</option>`;
@@ -594,7 +594,7 @@ $('#parent-search').on('input', function() {
 
     if (term.length >= 2) {
         parentSearchTimeout = setTimeout(function() {
-            $.get('/search-parents', { term: term }, function(parents) {
+            $.get('{{ route("search-parents") }}', { term: term }, function(parents) {
                 let results = '';
                 parents.forEach(function(parent) {
                     results += `

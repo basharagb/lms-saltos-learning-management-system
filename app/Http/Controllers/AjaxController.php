@@ -62,7 +62,10 @@ class AjaxController extends Controller
     public function getClassSections($class_id)
     {
         $sections = $this->my_class->getClassSections($class_id);
-        return response()->json($sections);
+        $formatted_sections = $sections->map(function($q){
+            return ['id' => $q->id, 'name' => $q->name];
+        })->all();
+        return response()->json($formatted_sections);
     }
 
     public function getLGAs($state_id)

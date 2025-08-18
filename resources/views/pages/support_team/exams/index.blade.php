@@ -1,17 +1,17 @@
 @extends('layouts.master')
-@section('page_title', 'Manage Exams')
+@section('page_title', __('exams.manage_exams'))
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Manage Exams</h6>
+            <h6 class="card-title">{{ __('exams.manage_exams') }}</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
         <div class="card-body">
             <ul class="nav nav-tabs nav-tabs-highlight">
-                <li class="nav-item"><a href="#all-exams" class="nav-link active" data-toggle="tab">Manage Exam</a></li>
-                <li class="nav-item"><a href="#new-exam" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> Add Exam</a></li>
+                <li class="nav-item"><a href="#all-exams" class="nav-link active" data-toggle="tab">{{ __('exams.manage_exam') }}</a></li>
+                <li class="nav-item"><a href="#new-exam" class="nav-link" data-toggle="tab"><i class="icon-plus2"></i> {{ __('exams.add_exam') }}</a></li>
             </ul>
 
             <div class="tab-content">
@@ -19,11 +19,11 @@
                         <table class="table datatable-button-html5-columns">
                             <thead>
                             <tr>
-                                <th>S/N</th>
-                                <th>Name</th>
-                                <th>Term</th>
-                                <th>Session</th>
-                                <th>Action</th>
+                                <th>{{ __('exams.serial_number') }}</th>
+                                <th>{{ __('exams.name') }}</th>
+                                <th>{{ __('exams.term') }}</th>
+                                <th>{{ __('exams.session') }}</th>
+                                <th>{{ __('exams.action') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -43,11 +43,11 @@
                                                 <div class="dropdown-menu dropdown-menu-left">
                                                     @if(Qs::userIsTeamSA())
                                                     {{--Edit--}}
-                                                    <a href="{{ route('exams.edit', $ex->id) }}" class="dropdown-item"><i class="icon-pencil"></i> Edit</a>
+                                                    <a href="{{ route('exams.edit', $ex->id) }}" class="dropdown-item"><i class="icon-pencil"></i> {{ __('exams.edit') }}</a>
                                                    @endif
                                                     @if(Qs::userIsSuperAdmin())
                                                     {{--Delete--}}
-                                                    <a id="{{ $ex->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> Delete</a>
+                                                    <a id="{{ $ex->id }}" onclick="confirmDelete(this.id)" href="#" class="dropdown-item"><i class="icon-trash"></i> {{ __('exams.delete') }}</a>
                                                     <form method="post" id="item-delete-{{ $ex->id }}" action="{{ route('exams.destroy', $ex->id) }}" class="hidden">@csrf @method('delete')</form>
                                                         @endif
 
@@ -67,7 +67,7 @@
                             <div class="alert alert-info border-0 alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert"><span>&times;</span></button>
 
-                                <span>You are creating an Exam for the Current Session <strong>{{ Qs::getSetting('current_session') }}</strong></span>
+                                <span>{!! __('exams.creating_exam_for_current_session', ['session' => Qs::getSetting('current_session')]) !!}</span>
                             </div>
                         </div>
                     </div>
@@ -76,25 +76,25 @@
                             <form method="post" action="{{ route('exams.store') }}">
                                 @csrf
                                 <div class="form-group row">
-                                    <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
+                                    <label class="col-lg-3 col-form-label font-weight-semibold">{!! __('exams.name_required') !!}</label>
                                     <div class="col-lg-9">
-                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="Name of Exam">
+                                        <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="{{ __('exams.name_placeholder') }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="term" class="col-lg-3 col-form-label font-weight-semibold">Term</label>
+                                    <label for="term" class="col-lg-3 col-form-label font-weight-semibold">{{ __('exams.term') }}</label>
                                     <div class="col-lg-9">
-                                        <select data-placeholder="Select Teacher" class="form-control select-search" name="term" id="term">
-                                            <option {{ old('term') == 1 ? 'selected' : '' }} value="1">First Term</option>
-                                            <option {{ old('term') == 2 ? 'selected' : '' }} value="2">Second Term</option>
-                                            <option {{ old('term') == 3 ? 'selected' : '' }} value="3">Third Term</option>
+                                        <select data-placeholder="{{ __('exams.select_term') }}" class="form-control select-search" name="term" id="term">
+                                            <option {{ old('term') == 1 ? 'selected' : '' }} value="1">{{ __('exams.term_1') }}</option>
+                                            <option {{ old('term') == 2 ? 'selected' : '' }} value="2">{{ __('exams.term_2') }}</option>
+                                            <option {{ old('term') == 3 ? 'selected' : '' }} value="3">{{ __('exams.term_3') }}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="text-right">
-                                    <button type="submit" class="btn btn-primary">Submit form <i class="icon-paperplane ml-2"></i></button>
+                                    <button type="submit" class="btn btn-primary">{{ __('exams.submit_form') }} <i class="icon-paperplane ml-2"></i></button>
                                 </div>
                             </form>
                         </div>

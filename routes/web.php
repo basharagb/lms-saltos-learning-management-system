@@ -22,6 +22,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/', 'MyAccountController@edit_profile')->name('my_account');
         Route::put('/', 'MyAccountController@update_profile')->name('my_account.update');
         Route::put('/change_password', 'MyAccountController@change_pass')->name('my_account.change_pass');
+        Route::put('/update_photo', 'MyAccountController@update_photo')->name('my_account.update_photo');
+        Route::delete('/remove_photo', 'MyAccountController@remove_photo')->name('my_account.remove_photo');
     });
 
     /*************** Student Portal *****************/
@@ -181,9 +183,9 @@ Route::group(['middleware' => 'auth'], function () {
         });
 
         /*************** Helper Routes *****************/
-        Route::get('get-class-sections/{class_id}', 'AjaxController@getClassSections');
-        Route::get('get-lgas/{state_id}', 'AjaxController@getLGAs');
-        Route::get('search-parents', 'AjaxController@searchParents');
+        Route::get('get-class-sections/{class_id}', 'AjaxController@getClassSections')->name('get-class-sections');
+        Route::get('get-lgas/{state_id}', 'AjaxController@getLGAs')->name('get-lgas');
+        Route::get('search-parents', 'AjaxController@searchParents')->name('search-parents');
 
     });
 

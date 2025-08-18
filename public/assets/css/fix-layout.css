@@ -1,0 +1,134 @@
+/* Fix Layout CSS - Override broken layout rules */
+
+/* Force sidebar to be visible and properly positioned */
+.sidebar.sidebar-main {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    width: 270px !important;
+    z-index: 1040 !important;
+    transform: none !important;
+}
+
+.sidebar.sidebar-main .sidebar-content {
+    position: fixed !important;
+    left: 0 !important;
+    top: 60px !important;
+    bottom: 0 !important;
+    width: 270px !important;
+    overflow-y: auto !important;
+    transform: none !important;
+}
+
+/* Force page content to be properly positioned */
+.page-content {
+    margin-left: 270px !important;
+    width: calc(100% - 270px) !important;
+    position: relative !important;
+}
+
+/* Fix content wrapper */
+.content-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* Fix content area */
+.content {
+    padding: 1.25rem !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* Force icons to display */
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon' !important;
+    display: inline-block !important;
+    width: 1em !important;
+    height: 1em !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* Fix navigation items */
+.nav-sidebar .nav-item .nav-link {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.75rem 1.25rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: none !important;
+}
+
+.nav-sidebar .nav-item .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.15) !important;
+    color: #fff !important;
+}
+
+.nav-sidebar .nav-item .nav-link i {
+    margin-right: 1.25rem !important;
+    width: 1em !important;
+    text-align: center !important;
+}
+
+/* Fix sidebar user section */
+.sidebar-user {
+    padding: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.sidebar-user .media {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.sidebar-user .media-title {
+    color: #fff !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.sidebar-user .media-subtitle {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.875rem !important;
+}
+
+/* Fix mobile toggler */
+.sidebar-mobile-toggler {
+    display: none !important;
+}
+
+/* Force sidebar to be visible on all screen sizes */
+@media (max-width: 767px) {
+    .sidebar.sidebar-main {
+        width: 270px !important;
+        left: 0 !important;
+    }
+    
+    .page-content {
+        margin-left: 270px !important;
+        width: calc(100% - 270px) !important;
+    }
+}
+
+/* Override any RTL positioning */
+.sidebar-main,
+.sidebar-main .sidebar-content {
+    right: auto !important;
+    left: 0 !important;
+}
+
+/* Fix any conflicting CSS */
+* {
+    box-sizing: border-box !important;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Roboto', Arial, sans-serif !important;
+}
+
+
+

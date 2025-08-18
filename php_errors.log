@@ -1,0 +1,1 @@
+[18-Aug-2025 09:56:35 UTC] PHP Deprecated:  Illuminate\Log\Logger::__construct(): Implicitly marking parameter $dispatcher as nullable is deprecated, the explicit nullable type must be used instead in /Users/macbookair/Downloads/lms/lav_sms/vendor/laravel/framework/src/Illuminate/Log/Logger.php on line 43
